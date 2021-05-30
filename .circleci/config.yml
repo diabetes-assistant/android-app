@@ -61,12 +61,53 @@ jobs:
           path: app/build/reports
           destination: reports
       - store_test_results:
-          path: app/build/test-results
+          path: app/build/reports
+
+  build_apk:
+    docker:
+      - image: circleci/android:api-30
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+      - restore_gradle_cache
+      - run: ./gradlew androidDependencies
+      - save_gradle_cache
+      - run: ./gradlew assemble
+      - store_artifacts:
+          path: app/build/outputs/apk
+          destination: apk
+
+  build_bundle:
+    docker:
+      - image: circleci/android:api-30
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+      - restore_gradle_cache
+      - run: ./gradlew androidDependencies
+      - save_gradle_cache
+      - run: ./gradlew bundle
+      - store_artifacts:
+          path: app/build/outputs/bundle
+          destination: bundle
 
 workflows:
   pipeline:
     jobs:
       - test
       - lint
-      - android/run-ui-tests:
-          system-image: system-images;android-30;default;x86
+      - build_apk:
+          requires:
+            - test
+            - lint
+      - build_bundle:
+          requires:
+            - build_apk
