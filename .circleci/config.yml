@@ -1,12 +1,15 @@
 version: 2.1
 
+orbs:
+  android: circleci/android@1.0
+
 commands:
   restore_gradle_cache:
     description: "Restore gradle cache"
     steps:
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle.kts" }}
+            - v1-dependencies-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
             - v1-dependencies-
 
   save_gradle_cache:
@@ -17,12 +20,12 @@ commands:
             - "~/.ivy2/cache"
             - "~/.gradle"
             - "~/.m2"
-          key: v1-dependencies-{{ checksum "build.gradle.kts" }}
+          key: v1-dependencies-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
 
 jobs:
   test:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/android:api-30
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -31,17 +34,18 @@ jobs:
     steps:
       - checkout
       - restore_gradle_cache
-      - run: ./gradlew dependencies
+      - run: ./gradlew androidDependencies
       - save_gradle_cache
-      - run: ./gradlew check
+      - run: ./gradlew test
       - store_artifacts:
-          path: ~/repo/app/build/reports/tests
+          path: app/build/reports
+          destination: reports
       - store_test_results:
-          path: ~/repo/app/build/reports/tests
+          path: app/build/test-results
 
   lint:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/android:api-30
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -50,16 +54,19 @@ jobs:
     steps:
       - checkout
       - restore_gradle_cache
-      - run: ./gradlew dependencies
+      - run: ./gradlew androidDependencies
       - save_gradle_cache
       - run: ./gradlew lint
       - store_artifacts:
-          path: ~/repo/app/build/reports
+          path: app/build/reports
+          destination: reports
       - store_test_results:
-          path: ~/repo/app/build/reports
+          path: app/build/test-results
 
 workflows:
   pipeline:
     jobs:
       - test
       - lint
+      - android/run-ui-tests:
+          system-image: system-images;android-30;default;x86
