@@ -30,7 +30,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
     steps:
       - checkout
       - restore_gradle_cache
@@ -50,7 +49,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
     steps:
       - checkout
       - restore_gradle_cache
@@ -70,7 +68,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
     steps:
       - checkout
       - restore_gradle_cache
@@ -88,7 +85,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
     steps:
       - checkout
       - restore_gradle_cache
@@ -99,15 +95,50 @@ jobs:
           path: app/build/outputs/bundle
           destination: bundle
 
+  end_to_end_test:
+    docker:
+      - image: circleci/android:api-30
+    working_directory: ~/repo
+    environment:
+      TERM: dumb
+    steps:
+      - checkout
+      - restore_gradle_cache
+      - run: ./gradlew androidDependencies
+      - save_gradle_cache
+      - run:
+          name: Build debug APK and release APK
+          command: |
+            ./gradlew :app:assembleDebug
+            ./gradlew :app:assembleDebugAndroidTest
+      - run:
+          name: Store Google Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run:
+          name: Authorize gcloud and set config defaults
+          command: |
+            sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+            sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run:
+          name: Test with Firebase Test Lab
+          command: >
+            sudo gcloud firebase test android run \
+              --app app/build/outputs/apk/debug/app-debug.apk \
+              --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+              --results-bucket cloud-test-${GOOGLE_PROJECT_ID}
+
 workflows:
   pipeline:
     jobs:
       - test
       - lint
-      - build_apk:
+      - end_to_end_test:
           requires:
             - test
             - lint
+      - build_apk:
+          requires:
+            - end_to_end_test
       - build_bundle:
           requires:
             - build_apk
