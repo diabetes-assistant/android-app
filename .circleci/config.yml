@@ -6,7 +6,7 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-{{ checksum "build.gradle.kts" }}
             - v1-dependencies-
 
   save_gradle_cache:
@@ -17,7 +17,7 @@ commands:
             - "~/.ivy2/cache"
             - "~/.gradle"
             - "~/.m2"
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: v1-dependencies-{{ checksum "build.gradle.kts" }}
 
 jobs:
   test:
