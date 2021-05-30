@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.gallery
+package com.github.diabetesassistant.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

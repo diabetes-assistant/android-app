@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.github.diabetesassistant
 
 import org.junit.Test
 
