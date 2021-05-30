@@ -31,9 +31,9 @@ jobs:
     steps:
       - checkout
       - restore_gradle_cache
-      - run: gradle dependencies
+      - run: ./gradlew dependencies
       - save_gradle_cache
-      - run: gradle check
+      - run: ./gradlew check
       - store_artifacts:
           path: ~/repo/app/build/reports/tests
       - store_test_results:
@@ -50,9 +50,9 @@ jobs:
     steps:
       - checkout
       - restore_gradle_cache
-      - run: gradle dependencies
+      - run: ./gradlew dependencies
       - save_gradle_cache
-      - run: gradle lint
+      - run: ./gradlew lint
       - store_artifacts:
           path: ~/repo/app/build/reports
       - store_test_results:
