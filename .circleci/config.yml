@@ -73,6 +73,7 @@ jobs:
       - restore_gradle_cache
       - run: ./gradlew androidDependencies
       - save_gradle_cache
+      - run: ./gradlew ktlintCheck
       - run: ./gradlew lint
       - store_artifacts:
           path: app/build/reports

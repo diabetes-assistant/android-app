@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("io.gitlab.arturbosch.detekt") version "1.17.1"
+    id("io.gitlab.arturbosch.detekt")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -39,6 +40,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+}
+
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }
 
 dependencies {
