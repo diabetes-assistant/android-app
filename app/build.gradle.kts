@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("io.gitlab.arturbosch.detekt")
-    id("org.jlleitschuh.gradle.ktlint")
+    id("io.gitlab.arturbosch.detekt") version "1.17.1"
+    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
 android {
