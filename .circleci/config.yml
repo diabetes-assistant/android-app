@@ -152,11 +152,13 @@ workflows:
   pipeline:
     jobs:
       - test
+      - static_code_check
       - lint
       - end_to_end_test:
           requires:
             - test
             - lint
+            - static_code_check
       - build_apk:
           requires:
             - end_to_end_test
