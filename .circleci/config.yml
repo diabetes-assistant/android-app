@@ -25,7 +25,7 @@ commands:
 jobs:
   test:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -44,7 +44,7 @@ jobs:
 
   static_code_check:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -63,7 +63,7 @@ jobs:
 
   lint:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -83,7 +83,7 @@ jobs:
 
   build_apk:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -100,7 +100,7 @@ jobs:
 
   build_bundle:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -117,7 +117,7 @@ jobs:
 
   end_to_end_test:
     docker:
-      - image: circleci/android:api-30
+      - image: cimg/android:30.0
     working_directory: ~/repo
     environment:
       TERM: dumb
