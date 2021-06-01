@@ -55,12 +55,11 @@ jobs:
       - run: ./gradlew androidDependencies
       - save_gradle_cache
       - run: ./gradlew detekt
-      - run: ls -all app/build
       - store_artifacts:
-          path: app/build/reports
+          path: app/build/reports/detekt
           destination: reports
       - store_test_results:
-          path: app/build/reports
+          path: app/build/reports/detekt
 
   lint:
     docker:
