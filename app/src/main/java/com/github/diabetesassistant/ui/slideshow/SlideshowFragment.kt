@@ -20,20 +20,23 @@ class SlideshowFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         slideshowViewModel =
-                ViewModelProvider(this).get(SlideshowViewModel::class.java)
+            ViewModelProvider(this).get(SlideshowViewModel::class.java)
 
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        slideshowViewModel.text.observe(
+            viewLifecycleOwner,
+            Observer {
+                textView.text = it
+            }
+        )
         return root
     }
 
