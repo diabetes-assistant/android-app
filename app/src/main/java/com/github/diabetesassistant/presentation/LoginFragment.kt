@@ -1,4 +1,4 @@
-package com.github.diabetesassistant.presentation.login
+package com.github.diabetesassistant.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,14 +29,6 @@ class LoginFragment : Fragment() {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textLogin
-        loginViewModel.text.observe(
-            viewLifecycleOwner,
-            Observer {
-                textView.text = it
-            }
-        )
         return root
     }
 
