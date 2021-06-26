@@ -1,4 +1,4 @@
-package com.github.diabetesassistant.presentation
+package com.github.diabetesassistant.dosage.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.github.diabetesassistant.databinding.FragmentLoginBinding
+import com.github.diabetesassistant.databinding.FragmentDashboardBinding
 
-class LoginFragment : Fragment() {
-
-    private lateinit var loginViewModel: LoginViewModel
-    private var _binding: FragmentLoginBinding? = null
+class DashboardFragment : Fragment() {
+    private lateinit var dashboardViewModel: DashboardViewModel
+    private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,11 +23,16 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        loginViewModel =
-            ViewModelProvider(this).get(LoginViewModel::class.java)
+        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val textView: TextView = binding.textDashboard
+        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+            textView.text = it
+        }
+        )
         return root
     }
 

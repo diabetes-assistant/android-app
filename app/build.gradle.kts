@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     id("io.gitlab.arturbosch.detekt") version "1.17.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+    id("kotlin-android")
 }
 
 android {
@@ -57,6 +58,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation("androidx.annotation:annotation:1.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
