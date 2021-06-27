@@ -1,12 +1,13 @@
 package com.github.diabetesassistant.auth.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val email = MutableLiveData("")
+    val password = MutableLiveData("")
+
+    fun isInvalid(): Boolean {
+        return this.email.value.isNullOrBlank() || this.password.value.isNullOrBlank()
     }
-    val text: LiveData<String> = _text
 }
