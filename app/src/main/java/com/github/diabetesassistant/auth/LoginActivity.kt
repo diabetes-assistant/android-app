@@ -25,17 +25,20 @@ class LoginActivity : AppCompatActivity() {
         binding.loginSubmitButton.setOnClickListener(this::handleSubmit)
     }
 
-    private fun handleSubmit(_view: View) {
+    @Suppress("UNUSED_PARAMETER")
+    private fun handleSubmit(view: View) {
         if (this.loginViewModel.isInvalid()) {
             Snackbar.make(binding.container, R.string.login_failed, Snackbar.LENGTH_LONG).show()
         }
     }
 
-    private fun setEmailState(chars: CharSequence?, _1: Int, _2: Int, _3: Int) {
+    @Suppress("UNUSED_PARAMETER")
+    private fun setEmailState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.loginViewModel.email.value = chars.toString()
     }
 
-    private fun setPasswordState(chars: CharSequence?, _1: Int, _2: Int, _3: Int) {
+    @Suppress("UNUSED_PARAMETER")
+    private fun setPasswordState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.loginViewModel.password.value = chars.toString()
     }
 }
