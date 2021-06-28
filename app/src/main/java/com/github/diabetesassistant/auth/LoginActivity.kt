@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-    private val service = AuthService(AuthClient())
+    private lateinit var service: AuthService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginEmailAddress.doOnTextChanged(this::setEmailState)
         binding.loginPassword.doOnTextChanged(this::setPasswordState)
         binding.loginSubmitButton.setOnClickListener(this::handleSubmit)
+        service = AuthService(AuthClient("https://live-diabetes-assistant-be.herokuapp.com/"))
     }
 
     @Suppress("UNUSED_PARAMETER")
