@@ -16,5 +16,6 @@
     <string name="login_description">To use all available features you need to sign in.</string>
     <string name="title_activity_login">Sign-in</string>
 
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">Login failed</string>
+    <string name="login_success">Successfully logged in</string>
 </resources>
