@@ -12,7 +12,7 @@ class AuthClient(private val baseUrl: String) {
     private val client = OkHttpClient()
     private val gson = Gson()
 
-    fun createToken(user: UserDTO): Result<TokenDTO> {
+    suspend fun createToken(user: UserDTO): Result<TokenDTO> {
         val mediaType = "application/json; charset=utf-8".toMediaType()
         val requestBody = gson.toJson(user).toRequestBody(mediaType)
         val request: Request = Request.Builder()
@@ -20,7 +20,7 @@ class AuthClient(private val baseUrl: String) {
             .post(requestBody)
             .build()
         val requestCall = Result.success(client.newCall(request))
-        val response: Result<Response> = requestCall.map { it.execute() }.map {
+        val response: Result<Response> = requestCall.mapCatching { it.execute() }.mapCatching {
             if (!it.isSuccessful) {
                 val message = "Error got response with status code: ${it.code} body: ${it.message}"
                 throw IOException(message)

@@ -31,7 +31,7 @@ class LoginViewModel : ViewModel() {
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 val user = User(email.value.toString(), password.value.toString())
-                val loginResult = service.login(user)
+                val loginResult: Result<Token> = service.login(user)
                 loginResult.fold(storeToken(view), handleError(view))
             }
         }
