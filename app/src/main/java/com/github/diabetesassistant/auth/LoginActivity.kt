@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginEmailAddress.doOnTextChanged(this::setEmailState)
         binding.loginPassword.doOnTextChanged(this::setPasswordState)
         binding.loginSubmitButton.setOnClickListener(this::handleSubmit)
+        binding.registerButton.setOnClickListener(this::handleSubmit)
         service = AuthService(AuthClient("https://live-diabetes-assistant-be.herokuapp.com/"))
     }
 
