@@ -4,6 +4,7 @@ import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.data.TokenDTO
 import com.github.diabetesassistant.auth.data.UserDTO
 import java.lang.IllegalStateException
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.`when`
@@ -18,26 +19,30 @@ class AuthServiceTest {
 
     @Test
     fun shouldReturnTokenForLoginUser() {
-        val (authClientMock, testee) = this.fixtures()
-        `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
-            .thenReturn(Result.success(TokenDTO("access", "id")))
+        runBlocking {
+            val (authClientMock, testee) = fixtures()
+            `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
+                .thenReturn(Result.success(TokenDTO("access", "id")))
 
-        val actual = testee.login(User("foo@bar.com", "secret"))
-        val expected = Result.success(Token("access", "id"))
+            val actual = testee.login(User("foo@bar.com", "secret"))
+            val expected = Result.success(Token("access", "id"))
 
-        assertEquals(expected, actual)
+            assertEquals(expected, actual)
+        }
     }
 
     @Test
     fun shouldReturnFailingResultWhenErrorOccurs() {
-        val (authClientMock, testee) = this.fixtures()
-        val error = IllegalStateException("foo")
-        `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
-            .thenReturn(Result.failure(error))
+        runBlocking {
+            val (authClientMock, testee) = fixtures()
+            val error = IllegalStateException("foo")
+            `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
+                .thenReturn(Result.failure(error))
 
-        val actual = testee.login(User("foo@bar.com", "secret"))
-        val expected = Result.failure<Token>(error)
+            val actual = testee.login(User("foo@bar.com", "secret"))
+            val expected = Result.failure<Token>(error)
 
-        assertEquals(expected, actual)
+            assertEquals(expected, actual)
+        }
     }
 }

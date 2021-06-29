@@ -10,7 +10,7 @@ open class BackendIntegrationTest(
 ) {
     private val wireMock = WireMockServer(8080)
     @Before
-    fun setUp() {
+    open fun setUp() {
         wireMock.start()
         if (isRecording) {
             wireMock.startRecording(baseUrl)
@@ -18,7 +18,7 @@ open class BackendIntegrationTest(
     }
 
     @After
-    fun tearDown() {
+    open fun tearDown() {
         if (isRecording) {
             wireMock.saveMappings()
             wireMock.stopRecording()

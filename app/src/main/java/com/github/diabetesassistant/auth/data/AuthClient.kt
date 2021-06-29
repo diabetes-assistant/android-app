@@ -12,7 +12,7 @@ class AuthClient(private val baseUrl: String) {
     private val client = OkHttpClient()
     private val gson = Gson()
 
-    fun createToken(user: UserDTO): Result<TokenDTO> {
+    suspend fun createToken(user: UserDTO): Result<TokenDTO> {
         val mediaType = "application/json; charset=utf-8".toMediaType()
         val requestBody = gson.toJson(user).toRequestBody(mediaType)
         val request: Request = Request.Builder()
