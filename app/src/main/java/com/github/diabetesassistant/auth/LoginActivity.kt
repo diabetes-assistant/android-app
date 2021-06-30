@@ -1,5 +1,6 @@
 package com.github.diabetesassistant.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -21,12 +22,16 @@ class LoginActivity : AppCompatActivity() {
         binding.loginEmailAddress.doOnTextChanged(this::setEmailState)
         binding.loginPassword.doOnTextChanged(this::setPasswordState)
         binding.loginSubmitButton.setOnClickListener(this::handleSubmit)
-        binding.registerButton.setOnClickListener(this::handleSubmit)
+        binding.registerButton.setOnClickListener(this::goToRegisterActivity)
     }
 
     @Suppress("UNUSED_PARAMETER")
     private fun handleSubmit(view: View) {
         loginViewModel.login(binding.container)
+    }
+
+    private fun goToRegisterActivity(view: View) {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     @Suppress("UNUSED_PARAMETER")
