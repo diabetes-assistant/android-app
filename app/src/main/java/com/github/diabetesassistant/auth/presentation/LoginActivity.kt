@@ -10,6 +10,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.github.diabetesassistant.Dependencies.authService
+import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
 import com.github.diabetesassistant.auth.domain.Token
 import com.github.diabetesassistant.auth.domain.User
@@ -31,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginEmailAddress.doOnTextChanged(this::setEmailState)
         binding.loginPassword.doOnTextChanged(this::setPasswordState)
         binding.loginSubmitButton.setOnClickListener(this::handleSubmit)
-        binding.registerButton.setOnClickListener(this::goToRegisterActivity)
+        binding.registerButton.setOnClickListener(this::startRegisterActivity)
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -56,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    private fun goToRegisterActivity(view: View) {
+    private fun startRegisterActivity(view: View) {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
 
@@ -81,6 +82,7 @@ class LoginActivity : AppCompatActivity() {
             }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()
             Log.i("Login", "Successfully logged in")
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
