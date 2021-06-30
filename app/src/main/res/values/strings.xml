@@ -18,4 +18,6 @@
 
     <string name="login_failed">Login failed</string>
     <string name="login_success">Successfully logged in</string>
+
+    <string name="register">Register</string>
 </resources>
