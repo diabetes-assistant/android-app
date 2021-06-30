@@ -9,7 +9,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.github.diabetesassistant.auth.LoginActivity
+import com.github.diabetesassistant.auth.presentation.LoginActivity
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

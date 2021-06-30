@@ -14,7 +14,7 @@
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.github.diabetesassistant.auth.LoginActivity"
+        android:name="com.github.diabetesassistant.auth.presentation.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 

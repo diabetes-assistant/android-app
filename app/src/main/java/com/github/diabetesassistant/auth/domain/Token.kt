@@ -1,3 +1,5 @@
 package com.github.diabetesassistant.auth.domain
 
-data class Token(val accessToken: String, val idToken: String)
+import com.auth0.jwt.interfaces.DecodedJWT
+
+data class Token(val accessToken: String, val idToken: DecodedJWT)

@@ -7,22 +7,24 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_login">Sign-in</string>
+    <string name="menu_login">Sign-in / Register</string>
     <string name="menu_dashboard">Dashboard</string>
 
+    <string name="title_activity_login">Sign-in</string>
+    <string name="login_description">To use all available features you need to sign in.</string>
     <string name="login_email">E-Mail</string>
     <string name="login_password">Password</string>
     <string name="login_submit_button">Sign-in</string>
-    <string name="login_description">To use all available features you need to sign in.</string>
-    <string name="title_activity_login">Sign-in</string>
-
     <string name="login_failed">Login failed</string>
     <string name="login_success">Successfully logged in</string>
 
+    <string name="title_activity_register">Register</string>
     <string name="register">Register</string>
-    <string name="register_password_confirmation">Password confirmation</string>
     <string name="register_description">Please register with your email-address and a password.</string>
-
+    <string name="register_email">E-Mail</string>
+    <string name="register_password">Password</string>
+    <string name="register_password_confirmation">Password confirmation</string>
+    <string name="register_submit_button">Register</string>
     <string name="register_failed">Register failed</string>
     <string name="register_success">Register succeeded</string>
 </resources>

@@ -18,6 +18,7 @@ android {
         versionName("1.0")
 
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        buildConfigField("String", "ID_TOKEN_SECRET", "\"${System.getenv("ID_TOKEN_SECRET")}\"")
     }
 
     buildTypes {
@@ -61,10 +62,13 @@ dependencies {
     implementation("androidx.annotation:annotation:1.2.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.google.code.gson:gson:2.8.7")
+    implementation("com.auth0:java-jwt:3.16.0")
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("com.github.tomakehurst:wiremock-jre8:2.28.1")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")

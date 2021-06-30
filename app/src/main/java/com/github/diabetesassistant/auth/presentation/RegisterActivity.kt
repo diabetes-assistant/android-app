@@ -1,11 +1,10 @@
-package com.github.diabetesassistant.auth
+package com.github.diabetesassistant.auth.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
-import com.github.diabetesassistant.auth.presentation.RegisterViewModel
 import com.github.diabetesassistant.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -31,12 +30,11 @@ class RegisterActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     private fun setPasswordState(chars: CharSequence?, a: Int, b: Int, c: Int) {
-            this.registerViewModel.password.value = chars.toString()
-
+        this.registerViewModel.password.value = chars.toString()
     }
 
     @Suppress("UNUSED_PARAMETER")
-    private fun setPasswordConfirmationState(chars: CharSequence?,i: Int, i1: Int, i2: Int) {
+    private fun setPasswordConfirmationState(chars: CharSequence?, i: Int, i1: Int, i2: Int) {
         this.registerViewModel.passwordConfirmation.value = chars.toString()
     }
 
