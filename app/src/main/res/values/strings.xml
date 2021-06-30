@@ -22,4 +22,7 @@
     <string name="register">Register</string>
     <string name="register_password_confirmation">Password confirmation</string>
     <string name="register_description">Please register with your email-address and a password.</string>
+
+    <string name="register_failed">Register failed</string>
+    <string name="register_success">Register succeeded</string>
 </resources>
