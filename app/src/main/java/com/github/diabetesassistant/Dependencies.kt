@@ -9,7 +9,8 @@ import com.github.diabetesassistant.auth.domain.AuthService
 object Dependencies {
     private const val ONE_SECOND: Long = 1
     private const val FIVE_SECONDS: Long = 5
-    private const val BASE_URL = "https://live-diabetes-assistant-be.herokuapp.com/"
+//    private const val BASE_URL = "https://live-diabetes-assistant-be.herokuapp.com/"
+    private const val BASE_URL = "https://staging-diabetes-assistant-be.herokuapp.com/"
 
     private val algorithm: Algorithm = Algorithm.HMAC512(BuildConfig.ID_TOKEN_SECRET)
     private val verifier: JWTVerifier = JWT.require(algorithm)

@@ -1,5 +1,6 @@
 package com.github.diabetesassistant.auth.presentation
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -70,7 +71,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun storeToken(view: View): (Token) -> Unit {
-        return { _: Token ->
+        return { token: Token ->
+            val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+            with (sharedPref.edit()) {
+                putString(getString(R.string.access_key), token.accessToken)
+                putString(getString(R.string.email), token.idToken.subject)
+                putString(getString(R.string.user_id), token.idToken.getClaim("email").asString())
+                apply()
+            }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()
             Log.i("Login", "Successfully logged in")
         }
