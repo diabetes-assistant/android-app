@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.login(binding.container)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun goToRegisterActivity(view: View) {
         startActivity(Intent(this, RegisterActivity::class.java))
     }
