@@ -18,4 +18,10 @@
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.github.diabetesassistant.auth.presentation.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+
 </navigation>

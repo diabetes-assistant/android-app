@@ -1,7 +1,11 @@
 package com.github.diabetesassistant
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -30,15 +34,26 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = getNavController()
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.loginActivity,
-                R.id.nav_dashboard
-            ),
-            drawerLayout
-        )
+        val loggedInMenuIds = setOf(R.id.nav_dashboard)
+        val menuIds = setOf(R.id.loginActivity, R.id.nav_dashboard)
+        val sharedPref = getSharedPreferences(getString(R.string.app_prefix), Context.MODE_PRIVATE)
+        val accessKey = sharedPref.getString(getString(R.string.access_key), "")
+
+        if (accessKey!!.isNotEmpty()) {
+            Log.i("main", "logged in")
+            binding.navView.menu.clear()
+            binding.navView.inflateMenu(R.menu.activity_logged_in_drawer)
+            val email = sharedPref.getString(getString(R.string.email), "")
+            val headerView: View = binding.navView.getHeaderView(0)
+            val headerMainText = headerView.findViewById(R.id.nav_header_main_text) as TextView
+            headerMainText.text = email
+            val headerSubText = headerView.findViewById(R.id.nav_header_sub_text) as TextView
+            headerSubText.text = getString(R.string.nav_header_title_logged_in)
+            appBarConfiguration = AppBarConfiguration(loggedInMenuIds, drawerLayout)
+        } else {
+            Log.i("main", "not logged in")
+            appBarConfiguration = AppBarConfiguration(menuIds, drawerLayout)
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

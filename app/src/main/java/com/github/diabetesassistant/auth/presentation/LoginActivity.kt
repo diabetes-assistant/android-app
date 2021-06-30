@@ -74,11 +74,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun storeToken(view: View): (Token) -> Unit {
         return { token: Token ->
-            val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
-            with (sharedPref.edit()) {
+            val appName = getString(R.string.app_prefix)
+            val sharedPref = getSharedPreferences(appName, Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
                 putString(getString(R.string.access_key), token.accessToken)
-                putString(getString(R.string.email), token.idToken.subject)
-                putString(getString(R.string.user_id), token.idToken.getClaim("email").asString())
+                putString(getString(R.string.user_id), token.idToken.subject)
+                putString(getString(R.string.email), token.idToken.getClaim("email").asString())
                 apply()
             }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()
