@@ -17,6 +17,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.registerEmailAddress.doOnTextChanged(this::setEmailState)
         binding.registerPassword.doOnTextChanged(this::setPasswordState)
         binding.registerPasswordConfirmation.doOnTextChanged(this::setPasswordConfirmationState)

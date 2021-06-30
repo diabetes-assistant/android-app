@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.loginEmailAddress.doOnTextChanged(this::setEmailState)
         binding.loginPassword.doOnTextChanged(this::setPasswordState)
