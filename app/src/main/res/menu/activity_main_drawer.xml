@@ -8,6 +8,12 @@
             android:id="@+id/loginActivity"
             android:icon="@drawable/ic_menu_account_circle"
             android:title="@string/menu_login" />
+        <!-- TODO wie kann man ein externes Icon einbinden? -->
+        <!-- Icon darf nur sichtbar sein, wenn login/ Authentifizierung erfolgreich -->
+        <item
+            android:id="@+id/calculateDosageActivity"
+            android:icon="@drawable/ic_menu_account_circle"
+            android:title="Calculate insulin dosage"/>
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_menu_dashboard"
