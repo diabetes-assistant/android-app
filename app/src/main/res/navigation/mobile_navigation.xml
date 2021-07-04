@@ -24,4 +24,10 @@
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
 
+    <activity
+        android:id="@id/calculateDosageActivity"
+        android:name="com.github.diabetesassistant.auth.presentation.CalculateDosageActivity"
+        android:label="activity_calculateDosage"
+        tools:layout="@layout/activity_calculate_dosage" />
+
 </navigation>
