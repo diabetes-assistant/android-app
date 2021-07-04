@@ -1,7 +1,7 @@
 package com.github.diabetesassistant.auth.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 
 class CalculateDosageActivity : AppCompatActivity() {
