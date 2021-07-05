@@ -20,7 +20,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         calculateDosageViewModel = ViewModelProvider(this).get(CalculateDosageViewModel::class.java)
         binding.calculateDosageGlucoseLevel.doOnTextChanged(this::setGlucoseLevelState)
-        binding.calculateDosageAmountCarbohydrates.doOnTextChanged(this::setAmountCarbohydratesState)
+        binding.calculateDosageAmountCarbohydrates
+            .doOnTextChanged(this::setAmountCarbohydratesState)
         binding.calculateDosageSubmitButton.setOnClickListener(this::handleSubmit)
         // TODO muss man für calculateDosage das Binding in die andere Richtung, vom ViewModel ausgehend implementieren?
         // binding.calculateDosageDosageResult ...
