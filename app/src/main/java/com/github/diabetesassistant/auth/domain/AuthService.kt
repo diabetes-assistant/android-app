@@ -10,13 +10,10 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
         return tokenCreationResult.mapCatching {
             Token(it.accessToken, verifier.verify(it.idToken))
         }
+    }
+    // TODO hier muss dann mutmaßlich eine Funktion register implementiert werden
 
-        // TODO hier muss dann mutmaßlich eine Funktion register implementiert werden
-        /*
-        suspend fun register(user: User): Result<Token> {
-
-        {
-
-         */
+    suspend fun register(user: User) {
     }
 }
+

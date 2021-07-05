@@ -14,22 +14,9 @@ class RegisterViewModel : ViewModel() {
     val password = MutableLiveData("")
     val passwordConfirmation = MutableLiveData("")
 
-    private fun isInvalid(): Boolean {
+    fun isInvalid(): Boolean {
         return this.email.value.isNullOrBlank() || this.password.value.isNullOrBlank() ||
             this.passwordConfirmation.value.isNullOrBlank() ||
             this.password.value != this.passwordConfirmation.value
-    }
-
-    fun register(view: View) {
-        val errorSnackbar = Snackbar.make(view, R.string.register_failed, Snackbar.LENGTH_LONG)
-        if (this.isInvalid()) {
-            errorSnackbar.show()
-        } else {
-            viewModelScope.launch(Dispatchers.IO) {
-                val registerSnackbar =
-                    Snackbar.make(view, R.string.register_success, Snackbar.LENGTH_LONG)
-                registerSnackbar.show()
-            }
-        }
     }
 }
