@@ -46,9 +46,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         this.calculateDosageViewModel.glucoseLevel.value = chars.toString()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun setAmountCarbohydratesState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.calculateDosageViewModel.carbohydrateAmount.value = chars.toString()
     }
-
-
 }

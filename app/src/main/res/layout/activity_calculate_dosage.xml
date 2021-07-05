@@ -83,6 +83,8 @@
                         android:textSize="@dimen/text_size_normal"
                         android:text=""/>
 
+                <!-- Evtl. noch einen Button "Save in diary as injected dosage" hinzufügen -->
+
             </LinearLayout>
 
         </RelativeLayout>
