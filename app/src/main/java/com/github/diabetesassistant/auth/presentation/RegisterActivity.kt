@@ -1,17 +1,12 @@
 package com.github.diabetesassistant.auth.presentation
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
-import com.github.diabetesassistant.auth.domain.Token
 import com.github.diabetesassistant.databinding.ActivityRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -70,6 +65,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     // Aus LoginActivity.kt übernommen
+    /*
     private fun storeToken(view: View): (Token) -> Unit {
         return { token: Token ->
             val appName = getString(R.string.app_prefix)
@@ -85,12 +81,15 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
+    */
 
     // Aus LoginActivity.kt übernommen
+    /*
     private fun handleError(view: View): (Throwable) -> Unit {
         return { error: Throwable ->
             Snackbar.make(view, R.string.login_failed, Snackbar.LENGTH_LONG).show()
             Log.e("Login", error.stackTraceToString())
         }
     }
+    */
 }

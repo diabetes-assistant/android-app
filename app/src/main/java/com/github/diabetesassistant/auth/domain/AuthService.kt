@@ -12,8 +12,8 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
         }
     }
     // TODO hier muss dann mutmaßlich eine Funktion register implementiert werden
-
+    /*
     suspend fun register(user: User) {
     }
+    */
 }
-
