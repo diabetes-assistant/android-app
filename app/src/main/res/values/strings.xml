@@ -14,6 +14,7 @@
     <string name="user_id">COM_GITHUHB_DIABETESASSISTANT_USER_ID</string>
 
     <string name="menu_login">Sign-in / Register</string>
+    <string name="menu_calculate_insulin_dosage">Calculate insulin dosage</string>
     <string name="menu_dashboard">Dashboard</string>
 
     <string name="title_activity_login">Sign-in</string>
@@ -32,4 +33,13 @@
     <string name="register_submit_button">Register</string>
     <string name="register_failed">Register failed</string>
     <string name="register_success">Register succeeded</string>
+
+    <string name="title_activity_calculate_dosage">Insulin dosage calculation</string>
+    <string name="calculate_dosage_description">Calculation of your recommended insulin dosage</string>
+    <!-- TODO Ermöglichen, dass sowohl in mg/dl als auch in mmol/l eingegeben werden kann -->
+    <string name="calculate_dosage_glucose_level">Glucose level [mg/dl]</string>
+    <string name="calculate_dosage_amount_carbohydrates">Total amount of carbohydrates [grams]</string>
+    <string name="calculate_dosage_result_description">Your recommended insulin dosage:</string>
+    <string name="calculate_dosage_result">Insulin dosage [IE]</string>
+    <string name="calculate_dosage_submit_button">Calculate insulin dosage</string>
 </resources>
