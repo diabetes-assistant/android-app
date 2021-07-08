@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import com.github.diabetesassistant.Dependencies.authService
 import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
+import com.github.diabetesassistant.auth.domain.Credentials
 import com.github.diabetesassistant.auth.domain.Token
-import com.github.diabetesassistant.auth.domain.User
 import com.github.diabetesassistant.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             errorSnackbar.show()
         } else {
             lifecycleScope.launch(Dispatchers.IO) {
-                val user = User(
+                val user = Credentials(
                     loginViewModel.email.value.toString(),
                     loginViewModel.password.value.toString()
                 )

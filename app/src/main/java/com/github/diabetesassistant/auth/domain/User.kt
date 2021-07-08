@@ -1,3 +1,5 @@
 package com.github.diabetesassistant.auth.domain
 
-data class User(val email: String, val password: String)
+import java.util.UUID
+
+data class User(val id: UUID, val email: String)

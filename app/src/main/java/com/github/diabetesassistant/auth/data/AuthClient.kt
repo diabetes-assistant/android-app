@@ -12,9 +12,9 @@ class AuthClient(private val baseUrl: String) {
     private val client = OkHttpClient()
     private val gson = Gson()
 
-    suspend fun createToken(user: UserDTO): Result<TokenDTO> {
+    suspend fun createToken(credentials: CredentialsDTO): Result<TokenDTO> {
         val mediaType = "application/json; charset=utf-8".toMediaType()
-        val requestBody = gson.toJson(user).toRequestBody(mediaType)
+        val requestBody = gson.toJson(credentials).toRequestBody(mediaType)
         val request: Request = Request.Builder()
             .url("${baseUrl}auth/token")
             .post(requestBody)
@@ -29,5 +29,9 @@ class AuthClient(private val baseUrl: String) {
         }
         val responseBody = response.map { it.body!!.string() }
         return responseBody.map { gson.fromJson(it, TokenDTO::class.java) }
+    }
+
+    suspend fun createUser(credentials: CredentialsDTO): Result<UserDTO> {
+        return Result.failure(Exception())
     }
 }

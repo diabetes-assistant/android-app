@@ -3,9 +3,11 @@ package com.github.diabetesassistant.auth.domain
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.interfaces.DecodedJWT
 import com.github.diabetesassistant.auth.data.AuthClient
+import com.github.diabetesassistant.auth.data.CredentialsDTO
 import com.github.diabetesassistant.auth.data.TokenDTO
 import com.github.diabetesassistant.auth.data.UserDTO
 import java.lang.IllegalStateException
+import java.util.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -24,12 +26,12 @@ class AuthServiceTest {
     fun shouldReturnTokenForLoginUser() {
         runBlocking {
             val (authClientMock, verifier, testee) = fixtures()
-            `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
+            `when`(authClientMock.createToken(CredentialsDTO("foo@bar.com", "secret")))
                 .thenReturn(Result.success(TokenDTO("access", "id")))
             val decodedJWT = mock(DecodedJWT::class.java)
             `when`(verifier.verify("id")).thenReturn(decodedJWT)
 
-            val actual = testee.login(User("foo@bar.com", "secret"))
+            val actual = testee.login(Credentials("foo@bar.com", "secret"))
             val expected = Result.success(Token("access", decodedJWT))
 
             assertEquals(expected, actual)
@@ -41,10 +43,10 @@ class AuthServiceTest {
         runBlocking {
             val (authClientMock, _, testee) = fixtures()
             val error = IllegalStateException("foo")
-            `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
+            `when`(authClientMock.createToken(CredentialsDTO("foo@bar.com", "secret")))
                 .thenReturn(Result.failure(error))
 
-            val actual = testee.login(User("foo@bar.com", "secret"))
+            val actual = testee.login(Credentials("foo@bar.com", "secret"))
             val expected = Result.failure<Token>(error)
 
             assertEquals(expected, actual)
@@ -55,13 +57,44 @@ class AuthServiceTest {
     fun shouldReturnFailingResultWhenJWTErrorOccurs() {
         runBlocking {
             val (authClientMock, verifier, testee) = fixtures()
-            `when`(authClientMock.createToken(UserDTO("foo@bar.com", "secret")))
+            `when`(authClientMock.createToken(CredentialsDTO("foo@bar.com", "secret")))
                 .thenReturn(Result.success(TokenDTO("access", "id")))
             val error = IllegalStateException("foo")
             `when`(verifier.verify("id")).thenThrow(error)
 
-            val actual = testee.login(User("foo@bar.com", "secret"))
+            val actual = testee.login(Credentials("foo@bar.com", "secret"))
             val expected = Result.failure<Token>(error)
+
+            assertEquals(expected, actual)
+        }
+    }
+
+    @Test
+    fun shouldReturnRegisteredUser() {
+        runBlocking {
+            val (authClientMock, _, testee) = fixtures()
+            val createdUser = UserDTO(UUID.randomUUID().toString(), "foo@bar.com")
+            `when`(authClientMock.createUser(CredentialsDTO("foo@bar.com", "secret")))
+                .thenReturn(Result.success(createdUser))
+
+            val actual = testee.register(Credentials("foo@bar.com", "secret"))
+            val userId = UUID.fromString(createdUser.id)
+            val expected = Result.success(User(userId, createdUser.email))
+
+            assertEquals(expected, actual)
+        }
+    }
+
+    @Test
+    fun shouldReturnFailOnRegisterError() {
+        runBlocking {
+            val (authClientMock, _, testee) = fixtures()
+            val exception: Exception = Exception()
+            `when`(authClientMock.createUser(CredentialsDTO("foo@bar.com", "secret")))
+                .thenReturn(Result.failure(exception))
+
+            val actual = testee.register(Credentials("foo@bar.com", "secret"))
+            val expected = Result.failure<User>(exception)
 
             assertEquals(expected, actual)
         }

@@ -13,7 +13,7 @@ class AuthClientIntegrationTest :
         runBlocking {
             val client = AuthClient("http://localhost:8080/")
 
-            val actual = client.createToken(UserDTO("doctor@email.com", "secret"))
+            val actual = client.createToken(CredentialsDTO("doctor@email.com", "secret"))
             val expected = Result.success(TokenDTO("accessToken", "idToken"))
 
             assertEquals(expected, actual)
