@@ -48,7 +48,8 @@ class RegisterActivity : AppCompatActivity() {
                 val email = registerViewModel.email.value.toString()
                 val password = registerViewModel.password.value.toString()
                 val credentials = Credentials(email, password)
-                authService.register(credentials).onSuccess(handleSuccess(snackbarView)).onFailure(handleError(snackbarView))
+                val registerResult = authService.register(credentials)
+                registerResult.fold(handleSuccess(snackbarView), handleError(snackbarView))
             }
         }
     }

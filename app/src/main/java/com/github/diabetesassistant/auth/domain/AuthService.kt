@@ -4,11 +4,12 @@ import com.auth0.jwt.JWTVerifier
 import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.data.CredentialsDTO
 import com.github.diabetesassistant.auth.data.UserDTO
-import java.util.*
+import java.util.UUID
 
 class AuthService(private val authClient: AuthClient, private val verifier: JWTVerifier) {
     suspend fun login(credentials: Credentials): Result<Token> {
-        val tokenCreationResult = authClient.createToken(CredentialsDTO(credentials.email, credentials.password))
+        val dto = CredentialsDTO(credentials.email, credentials.password)
+        val tokenCreationResult = authClient.createToken(dto)
         return tokenCreationResult.mapCatching {
             Token(it.accessToken, verifier.verify(it.idToken))
         }

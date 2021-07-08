@@ -2,6 +2,7 @@ package com.github.diabetesassistant.auth.data
 
 import com.google.gson.Gson
 import java.io.IOException
+import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -12,14 +13,14 @@ class AuthClient(private val baseUrl: String) {
     private val client = OkHttpClient()
     private val gson = Gson()
 
-    suspend fun createToken(credentials: CredentialsDTO): Result<TokenDTO> {
+    private fun backendCall(dto: DTO, path: String): Result<String> {
         val mediaType = "application/json; charset=utf-8".toMediaType()
-        val requestBody = gson.toJson(credentials).toRequestBody(mediaType)
+        val requestBody = gson.toJson(dto).toRequestBody(mediaType)
         val request: Request = Request.Builder()
-            .url("${baseUrl}auth/token")
+            .url("${baseUrl}$path")
             .post(requestBody)
             .build()
-        val requestCall = Result.success(client.newCall(request))
+        val requestCall: Result<Call> = Result.success(client.newCall(request))
         val response: Result<Response> = requestCall.mapCatching { it.execute() }.mapCatching {
             if (!it.isSuccessful) {
                 val message = "Error got response with status code: ${it.code} body: ${it.message}"
@@ -27,11 +28,16 @@ class AuthClient(private val baseUrl: String) {
             }
             it
         }
-        val responseBody = response.map { it.body!!.string() }
+        return response.map { it.body!!.string() }
+    }
+
+    suspend fun createToken(credentials: CredentialsDTO): Result<TokenDTO> {
+        val responseBody: Result<String> = backendCall(credentials, "auth/token")
         return responseBody.map { gson.fromJson(it, TokenDTO::class.java) }
     }
 
     suspend fun createUser(credentials: CredentialsDTO): Result<UserDTO> {
-        return Result.failure(Exception())
+        val responseBody: Result<String> = backendCall(credentials, "user")
+        return responseBody.map { gson.fromJson(it, UserDTO::class.java) }
     }
 }

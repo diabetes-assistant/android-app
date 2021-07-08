@@ -7,7 +7,7 @@ import com.github.diabetesassistant.auth.data.CredentialsDTO
 import com.github.diabetesassistant.auth.data.TokenDTO
 import com.github.diabetesassistant.auth.data.UserDTO
 import java.lang.IllegalStateException
-import java.util.*
+import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
