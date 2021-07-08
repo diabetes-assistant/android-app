@@ -1,4 +1,4 @@
-package com.github.diabetesassistant.auth.presentation
+package com.github.diabetesassistant.dosage.presentation
 
 import android.os.Bundle
 import android.view.View

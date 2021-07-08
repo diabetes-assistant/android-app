@@ -1,4 +1,4 @@
-package com.github.diabetesassistant.auth.presentation
+package com.github.diabetesassistant.dosage.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

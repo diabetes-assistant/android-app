@@ -34,7 +34,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".auth.presentation.CalculateDosageActivity"
+            android:name=".dosage.presentation.CalculateDosageActivity"
             android:label="Calculate insulin dosage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
