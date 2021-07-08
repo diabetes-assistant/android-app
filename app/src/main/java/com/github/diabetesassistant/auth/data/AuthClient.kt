@@ -36,8 +36,8 @@ class AuthClient(private val baseUrl: String) {
         return responseBody.map { gson.fromJson(it, TokenDTO::class.java) }
     }
 
-    suspend fun createUser(credentials: CredentialsDTO): Result<UserDTO> {
-        val responseBody: Result<String> = backendCall(credentials, "user")
+    suspend fun createUser(dto: UserCreationDTO): Result<UserDTO> {
+        val responseBody: Result<String> = backendCall(dto, "user")
         return responseBody.map { gson.fromJson(it, UserDTO::class.java) }
     }
 }

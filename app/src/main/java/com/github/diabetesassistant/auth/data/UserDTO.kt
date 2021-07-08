@@ -1,3 +1,3 @@
 package com.github.diabetesassistant.auth.data
 
-data class UserDTO(val id: String, val email: String) : DTO
+data class UserDTO(val id: String, val email: String, val role: String) : DTO

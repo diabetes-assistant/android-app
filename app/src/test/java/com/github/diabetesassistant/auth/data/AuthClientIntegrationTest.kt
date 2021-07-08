@@ -19,4 +19,22 @@ class AuthClientIntegrationTest :
             assertEquals(expected, actual)
         }
     }
+
+    @Test
+    fun shouldCreateUser() {
+        runBlocking {
+            val client = AuthClient("http://localhost:8080/")
+            val dto = UserCreationDTO("foo@email.com", "secret", "patient")
+
+            val actual = client.createUser(dto)
+            val createdUser = UserDTO(
+                "fa171f58-e36f-48ca-b34f-185b4e810bac",
+                "foo@email.com",
+                "patient"
+            )
+            val expected = Result.success(createdUser)
+
+            assertEquals(expected, actual)
+        }
+    }
 }

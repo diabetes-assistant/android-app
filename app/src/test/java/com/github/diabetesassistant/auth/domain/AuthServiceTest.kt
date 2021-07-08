@@ -5,6 +5,7 @@ import com.auth0.jwt.interfaces.DecodedJWT
 import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.data.CredentialsDTO
 import com.github.diabetesassistant.auth.data.TokenDTO
+import com.github.diabetesassistant.auth.data.UserCreationDTO
 import com.github.diabetesassistant.auth.data.UserDTO
 import java.lang.IllegalStateException
 import java.util.UUID
@@ -73,9 +74,9 @@ class AuthServiceTest {
     fun shouldReturnRegisteredUser() {
         runBlocking {
             val (authClientMock, _, testee) = fixtures()
-            val createdUser = UserDTO(UUID.randomUUID().toString(), "foo@bar.com")
-            `when`(authClientMock.createUser(CredentialsDTO("foo@bar.com", "secret")))
-                .thenReturn(Result.success(createdUser))
+            val createdUser = UserDTO(UUID.randomUUID().toString(), "foo@bar.com", "patient")
+            val dto = UserCreationDTO("foo@bar.com", "secret", "patient")
+            `when`(authClientMock.createUser(dto)).thenReturn(Result.success(createdUser))
 
             val actual = testee.register(Credentials("foo@bar.com", "secret"))
             val userId = UUID.fromString(createdUser.id)
@@ -89,9 +90,9 @@ class AuthServiceTest {
     fun shouldReturnFailOnRegisterError() {
         runBlocking {
             val (authClientMock, _, testee) = fixtures()
-            val exception: Exception = Exception()
-            `when`(authClientMock.createUser(CredentialsDTO("foo@bar.com", "secret")))
-                .thenReturn(Result.failure(exception))
+            val dto = UserCreationDTO("foo@bar.com", "secret", "patient")
+            val exception = Exception()
+            `when`(authClientMock.createUser(dto)).thenReturn(Result.failure(exception))
 
             val actual = testee.register(Credentials("foo@bar.com", "secret"))
             val expected = Result.failure<User>(exception)
