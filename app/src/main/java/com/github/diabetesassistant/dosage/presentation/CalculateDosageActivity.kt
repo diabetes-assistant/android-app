@@ -38,9 +38,11 @@ class CalculateDosageActivity : AppCompatActivity() {
         if (calculateDosageViewModel.isInvalid()) {
             errorSnackbar.show()
         } else {
-            // TODO hier muss dann die Berechnung der Insulindosis initiiert werden
-            // TODO Die Berechnung selber habe ich ins ViewModel verschoben
+            // Hier wird die Berechnung der Insulindosis initiiert,
+            // die Berechnung selber habe ich ins ViewModel verschoben
             calculateDosageViewModel.calculateInsulinDosage()
+            // TODO wie mache ich das Ergebnis der Berechnung in der entsprechenden TextView der UI sichtbar? So jedenfalls nicht
+            // binding.calculateDosageResult=calculateDosageViewModel.insulinDosageRecommended.value
         }
     }
 
@@ -56,6 +58,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         this.calculateDosageViewModel.carbohydrateAmount.value = chars.toString()
     }
 
+    // TODO diese Funktion ist vermutlich falsch implementiert, da der Benutzer keine Eingaben in dem entspr. TextView machen kann
+    // TODO brauche ich überhaupt eine entsprechende separate Funktion?
     @Suppress("UNUSED_PARAMETER")
     private fun setInsulinDosageState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.calculateDosageViewModel.insulinDosageRecommended.value = chars.toString()
