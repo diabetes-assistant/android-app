@@ -1,7 +1,6 @@
 package com.github.diabetesassistant.dosage.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -13,7 +12,6 @@ class CalculateDosageActivity : AppCompatActivity() {
 
     private lateinit var calculateDosageViewModel: CalculateDosageViewModel
     private lateinit var binding: ActivityCalculateDosageBinding
-    private val TAG ="CalculateDosageActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,6 @@ class CalculateDosageActivity : AppCompatActivity() {
             // TODO hier muss dann die Berechnung der Insulindosis initiiert werden
             // TODO Die Berechnung selber habe ich ins ViewModel verschoben
             calculateDosageViewModel.calculateInsulinDosage()
-
         }
     }
 
@@ -61,6 +58,6 @@ class CalculateDosageActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     private fun setInsulinDosageState(chars: CharSequence?, a: Int, b: Int, c: Int) {
-        this.calculateDosageViewModel.insulinDosageRecommended.value=chars.toString()
+        this.calculateDosageViewModel.insulinDosageRecommended.value = chars.toString()
     }
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlin.math.roundToInt
 
 class CalculateDosageViewModel : ViewModel() {
-    val TAG: String = "CalculateDosageViewModel"
+    val tag: String = "CalculateDosageViewModel"
 
     // Felder, die auch im UI sichtbar sind
     // TODO wieso werden hier val (final) und nicht var verwendet?
@@ -34,7 +34,7 @@ class CalculateDosageViewModel : ViewModel() {
     // TODO dieser obere Blutzuckernormwert sollte durch Ärzt:in änderbar sein, hier aber erstmal auf 120 mg/dl gesetzt
     val glucoseLevelUpperLimit: Int = 120
 
-    // TODO Hier auch noch klären, ob schon Blutzuckerober- und -untergrenzen berücksichtigt werden sollen
+    // TODO Hier noch klären, ob schon Blutzuckerober- und -untergrenzen berücksichtigt werden sollen
     // TODO Gibt es noch andere Eingaben, die invalid sind?
     fun isInvalid(): Boolean {
         return this.glucoseLevel.value
@@ -43,16 +43,17 @@ class CalculateDosageViewModel : ViewModel() {
     }
 
     fun calculateInsulinDosage() {
-        var insulinDosageRecommended: Int
-        var carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
-        var insulinStandardDosage: Int = (carbohydrateAmountInt * this.keFactor).roundToInt()
-        var glucoseLevelDiscrepancy: Int = this.glucoseLevel.value.toString().toInt() -
-                this.glucoseLevelUpperLimit
+        val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
+        val insulinStandardDosage: Int = (carbohydrateAmountInt * this.keFactor).roundToInt()
+        val glucoseLevelDiscrepancy: Int =
+            this.glucoseLevel.value.toString().toInt() - this.glucoseLevelUpperLimit
         // TODO ceil nutzen, damit aufgerundet wird
-        var correctionStepsInt: Int=(glucoseLevelDiscrepancy/this.glucoseLevelCorrectionInterval)
-        insulinDosageRecommended = insulinStandardDosage+(correctionStepsInt*this.glucoseLevelCorrectionDosage)
-        this.insulinDosageRecommended.value=insulinDosageRecommended.toString()
+        val correctionStepsInt: Int =
+            (glucoseLevelDiscrepancy / this.glucoseLevelCorrectionInterval)
+        val insulinDosageRecommended =
+            insulinStandardDosage + (correctionStepsInt * this.glucoseLevelCorrectionDosage)
+        this.insulinDosageRecommended.value = insulinDosageRecommended.toString()
 
-            Log.v(TAG, "insulinDosageRecommended= " + this.insulinDosageRecommended.value.toString())
+        Log.v(tag, "insulinDosageRecommended= " + this.insulinDosageRecommended.value.toString())
     }
 }
