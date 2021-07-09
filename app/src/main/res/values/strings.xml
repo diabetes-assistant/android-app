@@ -38,7 +38,7 @@
     <string name="calculate_dosage_description">Calculation of your recommended insulin dosage</string>
     <!-- TODO Ermöglichen, dass sowohl in mg/dl als auch in mmol/l eingegeben werden kann -->
     <string name="calculate_dosage_glucose_level">Glucose level [mg/dl]</string>
-    <string name="calculate_dosage_amount_carbohydrates">Total amount of carbohydrates [grams]</string>
+    <string name="calculate_dosage_amount_carbohydrates">Carbohydrate intake [carbohydrate units]</string>
     <string name="calculate_dosage_result_description">Your recommended insulin dosage:</string>
     <string name="calculate_dosage_result">Insulin dosage [IE]</string>
     <string name="calculate_dosage_submit_button">Calculate insulin dosage</string>

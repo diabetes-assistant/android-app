@@ -76,7 +76,7 @@
 
                     <!-- Der Text dieser TextView wird erst nach Berechnung der Dosis gesetzt -->
                     <TextView
-                        android:id="@+id/calculate_dosage_dosage_result"
+                        android:id="@+id/calculate_dosage_result"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_small"
