@@ -23,9 +23,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         binding.calculateDosageAmountCarbohydrates
             .doOnTextChanged(this::setAmountCarbohydratesState)
         binding.calculateDosageSubmitButton.setOnClickListener(this::handleSubmit)
-        // TODO muss man für calculateDosage das Binding in die andere Richtung, vom ViewModel ausgehend implementieren?
-        // TODO bzw. reicht es, wenn das entsprechende Feld im ViewModel über die Methode handleSubmit verändert wird?
-        binding.calculateDosageResult.doOnTextChanged(this::setInsulinDosageState)
+        // TODO Bez. binding.caculateDosageResult:
+        // TODO Reicht es, wenn das entsprechende Feld im ViewModel über die Methode handleSubmit verändert wird?
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -41,9 +40,7 @@ class CalculateDosageActivity : AppCompatActivity() {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber habe ich ins ViewModel verschoben
             calculateDosageViewModel.calculateInsulinDosage()
-            // TODO wie mache ich das Ergebnis der Berechnung in der entsprechenden
-            //  TextView der UI sichtbar? So jedenfalls nicht_
-            // binding.calculateDosageResult=calculateDosageViewModel.insulinDosageRecommended.value
+            binding.calculateDosageResult.setText(this.calculateDosageViewModel.insulinDosageRecommended.value)
         }
     }
 
@@ -57,13 +54,5 @@ class CalculateDosageActivity : AppCompatActivity() {
     @Suppress("UNUSED_PARAMETER")
     private fun setAmountCarbohydratesState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.calculateDosageViewModel.carbohydrateAmount.value = chars.toString()
-    }
-
-    // TODO diese Funktion ist vermutlich falsch implementiert,
-    //  da der Benutzer keine Eingaben in dem entspr. TextView machen kann
-    // TODO brauche ich überhaupt eine entsprechende separate Funktion?
-    @Suppress("UNUSED_PARAMETER")
-    private fun setInsulinDosageState(chars: CharSequence?, a: Int, b: Int, c: Int) {
-        this.calculateDosageViewModel.insulinDosageRecommended.value = chars.toString()
     }
 }
