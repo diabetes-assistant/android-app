@@ -40,7 +40,10 @@ class CalculateDosageActivity : AppCompatActivity() {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber habe ich ins ViewModel verschoben
             calculateDosageViewModel.calculateInsulinDosage()
-            binding.calculateDosageResult.setText(this.calculateDosageViewModel.insulinDosageRecommended.value+" IE")
+            binding.calculateDosageResult
+                .setText(
+                    this.calculateDosageViewModel.insulinDosageRecommended.value + " IE"
+                )
         }
     }
 

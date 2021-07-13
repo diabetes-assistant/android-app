@@ -54,14 +54,14 @@ class CalculateDosageViewModel : ViewModel() {
 
         // Größe eines Korrekturintervalls/ Korrekturschrittes in [mg/dl]
         // TODO sollte durch Ärzt:in gesetzt werden, hier aber zu Testzwecken erstmal auf 20 mg/dl gesetzt
-        val glucoseLevelCorrectionInterval: Int = 20
+        const val glucoseLevelCorrectionInterval: Int = 20
 
         // Korrektureinheiten: Insulineinheiten [IE], die pro Korrekturinterval/ Korrekturschritt erforderlich sind
         // TODO sollte durch Ärzt:in gesetzt werden, hier aber erstmal auf 2 IE gesetzt
-        val glucoseLevelCorrectionDosage: Int = 2
+        const val glucoseLevelCorrectionDosage: Int = 2
 
         // Oberer Normwert für den Blutzuckerspiegel, i.d.R. 120 mg/dl
         // TODO dieser obere Blutzuckernormwert sollte durch Ärzt:in änderbar sein, hier aber erstmal auf 120 mg/dl gesetzt
-        val glucoseLevelUpperLimit: Int = 120
+        const val glucoseLevelUpperLimit: Int = 120
     }
 }
