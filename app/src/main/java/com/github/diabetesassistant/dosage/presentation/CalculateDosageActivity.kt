@@ -23,7 +23,7 @@ class CalculateDosageActivity : AppCompatActivity() {
         binding.calculateDosageAmountCarbohydrates
             .doOnTextChanged(this::setAmountCarbohydratesState)
         binding.calculateDosageSubmitButton.setOnClickListener(this::handleSubmit)
-        // TODO Bez. binding.caculateDosageResult:
+        // TODO Bez. binding.calculateDosageResult:
         // TODO Reicht es, wenn das entsprechende Feld im ViewModel über die Methode handleSubmit verändert wird?
     }
 
@@ -40,7 +40,7 @@ class CalculateDosageActivity : AppCompatActivity() {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber habe ich ins ViewModel verschoben
             calculateDosageViewModel.calculateInsulinDosage()
-            binding.calculateDosageResult.setText(this.calculateDosageViewModel.insulinDosageRecommended.value)
+            binding.calculateDosageResult.setText(this.calculateDosageViewModel.insulinDosageRecommended.value+" IE")
         }
     }
 
