@@ -64,6 +64,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.google.code.gson:gson:2.8.7")
     implementation("com.auth0:java-jwt:3.16.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.0.3")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:3.11.2")
