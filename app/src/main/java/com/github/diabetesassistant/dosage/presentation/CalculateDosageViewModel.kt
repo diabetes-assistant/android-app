@@ -25,7 +25,8 @@ class CalculateDosageViewModel : ViewModel() {
     /**
      * Berechnung der Insulindosis
      * TODO es darf natürlich keine negativen Dosisempfehlungen geben
-     * TODO Hier die Grenzwerte und die entsprechenden Warnungen/ Empfehlungen implentieren, wenn diese über-/ unterschritten werden?
+     * TODO Hier die Grenzwerte und die entsprechenden Warnungen/
+     * TODO Empfehlungen implentieren, wenn diese über-/ unterschritten werden?
      */
     fun calculateInsulinDosage() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
@@ -61,7 +62,8 @@ class CalculateDosageViewModel : ViewModel() {
         const val glucoseLevelCorrectionDosage: Int = 2
 
         // Oberer Normwert für den Blutzuckerspiegel, i.d.R. 120 mg/dl
-        // TODO dieser obere Blutzuckernormwert sollte durch Ärzt:in änderbar sein, hier aber erstmal auf 120 mg/dl gesetzt
+        // TODO dieser obere Blutzuckernormwert sollte durch Ärzt:in änderbar sein,
+        // TODO hier aber erstmal auf 120 mg/dl gesetzt
         const val glucoseLevelUpperLimit: Int = 120
     }
 }

@@ -27,6 +27,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         // TODO Reicht es, wenn das entsprechende Feld im ViewModel über die Methode handleSubmit verändert wird?
     }
 
+    // TODO wann immer die Patient:in neue Werte eingibt muss der Wert für die empfohlene Insulindosis zunächst
+    // TODO gelöscht werden und darf erst nach Betätigung des Submit-Buttons wieder neu berechnet erscheinen
     @Suppress("UNUSED_PARAMETER")
     private fun handleSubmit(view: View) {
         val errorSnackbar = Snackbar.make(
@@ -47,8 +49,6 @@ class CalculateDosageActivity : AppCompatActivity() {
         }
     }
 
-    // TODO wann immer die Patient:in neue Werte eingibt muss der Wert für die empfohlene Insulindosis zunächst
-    // TODO gelöscht werden und darf erst nach Betätigung des Submit-Buttons wieder neu berechnet erscheinen
     @Suppress("UNUSED_PARAMETER")
     private fun setGlucoseLevelState(chars: CharSequence?, a: Int, b: Int, c: Int) {
         this.calculateDosageViewModel.glucoseLevel.value = chars.toString()
