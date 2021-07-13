@@ -16,6 +16,7 @@
     <string name="menu_login">Sign-in / Register</string>
     <string name="menu_calculate_insulin_dosage">Calculate insulin dosage</string>
     <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_show_diary">Show blood glucose diary</string>
 
     <string name="title_activity_login">Sign-in</string>
     <string name="login_description">To use all available features you need to sign in.</string>

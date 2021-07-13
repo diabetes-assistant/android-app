@@ -30,4 +30,10 @@
         android:label="activity_calculateDosage"
         tools:layout="@layout/activity_calculate_dosage" />
 
+    <activity
+        android:id="@id/showDiaryActivity"
+        android:name="com.github.diabetesassistant.dosage.presentation.ShowDiaryActivity"
+        android:label="activity_show_diary"
+        tools:layout="@layout/activity_show_diary" />
+
 </navigation>
