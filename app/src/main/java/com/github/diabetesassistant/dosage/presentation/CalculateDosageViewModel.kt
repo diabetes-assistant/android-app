@@ -43,6 +43,7 @@ class CalculateDosageViewModel : ViewModel() {
     }
 
     /**  Durch die Ärzt:in voreingestellte Felder
+     * Hier zu Testzwecken als Konstanten gesetzt
      *
      */
     companion object Presets {
@@ -50,7 +51,7 @@ class CalculateDosageViewModel : ViewModel() {
         // The amount of insulin [IE] which is needed to normalize the blood glucose level
         // per intake of 1 carbohydrate unit (10 g of carbohydrates)
         // Will finally be entered by the doctor but is arbitrarily set here to 0.5 for testing purposes
-        // TODO sollte durch Arzt gesetzt werden
+        // TODO sollte durch Ärzt:in gesetzt werden
         const val keFactor: Float = 0.5F
 
         // Größe eines Korrekturintervalls/ Korrekturschrittes in [mg/dl]
