@@ -11,7 +11,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import java.util.*
+import java.util.ArrayList
 
 /**
  * https://www.youtube.com/watch?v=sXo2SkX7rGk&t=55s
