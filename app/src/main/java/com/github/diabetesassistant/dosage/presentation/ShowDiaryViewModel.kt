@@ -10,7 +10,7 @@ class ShowDiaryViewModel : ViewModel() {
 
     fun fillDataArrayList() {
         dataArrayList.clear()
-        var counter: Int = 0;
+        var counter: Int = 0
         dataArrayList.add(GlucoseLevelDBEntry(counter++, date_01, time_01, bloodGlucose_01))
         dataArrayList.add(GlucoseLevelDBEntry(counter++, date_02, time_02, bloodGlucose_02))
         dataArrayList.add(GlucoseLevelDBEntry(counter++, date_03, time_03, bloodGlucose_03))

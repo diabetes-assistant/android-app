@@ -68,8 +68,8 @@ class CalculateDosageViewModel : ViewModel() {
         const val glucoseLevelUpperNormalLimit: Int = 120
 
         // TODO Ober- und Untergrenzen, deren Unter-/ Überschreitung Arztkontakt erforderlich machen
-        const val glucoseLevelOuterBoundsHigh : Int = 260
+        const val glucoseLevelOuterBoundsHigh: Int = 260
 
-        const val glucoseLevelOuterBoundsLow : Int = 80
+        const val glucoseLevelOuterBoundsLow: Int = 80
     }
 }
