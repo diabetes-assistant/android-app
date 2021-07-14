@@ -26,7 +26,6 @@ class ShowDiaryActivity : AppCompatActivity() {
     val tag: String = "ShowDiaryActivity"
 
     private lateinit var barChart: BarChart
-    private var scoreList = ArrayList<Score>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.v(tag, "Wechsel in die ShowDiaryActivity erfolgreich (1)")
@@ -36,34 +35,34 @@ class ShowDiaryActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showDiaryViewModel = ViewModelProvider(this).get(ShowDiaryViewModel::class.java)
-
         barChart = binding.barChartOne
-        scoreList = getScoreList()
+        showDiaryViewModel.fillDataArrayList()
+
         initBarChart()
 
-        //now draw bar chart with dynamic data
         val entries: ArrayList<BarEntry> = ArrayList()
 
-        //you can replace this data object with  your custom object
-        for (i in scoreList.indices) {
-            val score = scoreList[i]
-            entries.add(BarEntry(i.toFloat(), score.score.toFloat()))
+        val GlucoseLevelDBEntryArrayList: ArrayList<BarEntry> = ArrayList()
+
+        for (i in showDiaryViewModel.dataArrayList.indices) {
+            val glucoseLevelDBEntry = showDiaryViewModel.dataArrayList[i]
+            GlucoseLevelDBEntryArrayList.add(BarEntry(i.toFloat(),glucoseLevelDBEntry.bloodGlucose.toFloat()))
         }
 
-        val barDataSet = BarDataSet(entries, "")
+        // val barDataSet = BarDataSet(entries, "")
+        val barDataSet = BarDataSet(GlucoseLevelDBEntryArrayList,"")
+
         barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
 
         val data = BarData(barDataSet)
         barChart.data = data
 
         barChart.invalidate()
-
     }
 
     private fun initBarChart() {
 
-
-//        hide grid lines
+        // hide grid lines
         barChart.axisLeft.setDrawGridLines(false)
         val xAxis: XAxis = barChart.xAxis
         xAxis.setDrawGridLines(false)
@@ -75,21 +74,18 @@ class ShowDiaryActivity : AppCompatActivity() {
         //remove legend
         barChart.legend.isEnabled = false
 
-
         //remove description label
         barChart.description.isEnabled = false
 
-
         //add animation
-        barChart.animateY(3000)
+        barChart.animateY(barGraphAnimationDuration)
 
         // to draw label on xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
         xAxis.valueFormatter = MyAxisFormatter()
         xAxis.setDrawLabels(true)
-        xAxis.granularity = 1f
-        xAxis.labelRotationAngle = +90f
-
+        xAxis.granularity = barGraphGranularity
+        xAxis.labelRotationAngle = barGraphRotationAngle
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
@@ -97,29 +93,19 @@ class ShowDiaryActivity : AppCompatActivity() {
         fun getAxisLabel(value: Float, axis: AxisBase?): String {
             val index = value.toInt()
             Log.d(TAG, "getAxisLabel: index $index")
-            return if (index < scoreList.size) {
-                scoreList[index].name
+            return if (index < showDiaryViewModel.dataArrayList.size) {
+                showDiaryViewModel.dataArrayList[index].date
             } else {
                 ""
             }
         }
     }
 
-    private fun getScoreList(): ArrayList<Score> {
-        var scoreList = ArrayList<Score>()
-        scoreList.add(Score("John", 56))
-        scoreList.add(Score("Rey", 75))
-        scoreList.add(Score("Steve", 85))
-        scoreList.add(Score("Kevin", 45))
-        scoreList.add(Score("Jeff", 63))
-
-        return scoreList
-    }
-
     // Definition von Konstanten für den BarGraph, um
     // Magic-Number-Warnungen des static code check zu umgehen
     companion object BarGraphPresets {
-        const val rotationAngle: Float = 270f
-        const val animationDuration: Int = 2000
+        const val barGraphRotationAngle: Float = +90f
+        const val barGraphAnimationDuration: Int = 2000
+        const val barGraphGranularity: Float = 1f
     }
 }
