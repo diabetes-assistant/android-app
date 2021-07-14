@@ -41,6 +41,8 @@ class CalculateDosageActivity : AppCompatActivity() {
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber habe ich ins ViewModel verschoben
+            // TODO Button für die Berechnung weiter nach oben und Schrift größer machen,
+            // TODO vor allem in der Berechnungs-Activity
             calculateDosageViewModel.calculateInsulinDosage()
             binding.calculateDosageResult
                 .setText(
