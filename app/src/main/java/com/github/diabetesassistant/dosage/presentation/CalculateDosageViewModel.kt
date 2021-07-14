@@ -32,7 +32,7 @@ class CalculateDosageViewModel : ViewModel() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
         val insulinStandardDosage: Int = (carbohydrateAmountInt * Presets.keFactor).roundToInt()
         val glucoseLevelDiscrepancy: Int =
-            this.glucoseLevel.value.toString().toInt() - Presets.glucoseLevelUpperLimit
+            this.glucoseLevel.value.toString().toInt() - Presets.glucoseLevelUpperNormalLimit
         // TODO ceil nutzen, damit aufgerundet wird
         val correctionStepsInt: Int =
             (glucoseLevelDiscrepancy / Presets.glucoseLevelCorrectionInterval)
@@ -65,6 +65,11 @@ class CalculateDosageViewModel : ViewModel() {
         // Oberer Normwert für den Blutzuckerspiegel, i.d.R. 120 mg/dl
         // TODO dieser obere Blutzuckernormwert sollte durch Ärzt:in änderbar sein,
         // TODO hier aber erstmal auf 120 mg/dl gesetzt
-        const val glucoseLevelUpperLimit: Int = 120
+        const val glucoseLevelUpperNormalLimit: Int = 120
+
+        // TODO Ober- und Untergrenzen, deren Unter-/ Überschreitung Arztkontakt erforderlich machen
+        const val glucoseLevelOuterBoundsHigh : Int = 260
+
+        const val glucoseLevelOuterBoundsLow : Int = 80
     }
 }

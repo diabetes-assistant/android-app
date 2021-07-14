@@ -25,7 +25,6 @@ class ShowDiaryActivity : AppCompatActivity() {
     var barEntryArrayList: ArrayList<BarEntry>? = null
     var labelsNamesArrayList: ArrayList<String>? = null
     var idArrayList: ArrayList<*>? = null
-    var dataArrayList: ArrayList<Data> = ArrayList<Data>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +36,13 @@ class ShowDiaryActivity : AppCompatActivity() {
         barEntryArrayList = ArrayList()
         labelsNamesArrayList = ArrayList()
         idArrayList = ArrayList<Any>()
-        fillDataArrayList()
+        showDiaryViewModel.fillDataArrayList()
 
-        for (i in dataArrayList.indices) {
-            val id: Int = dataArrayList[i].id
-            val date: String = dataArrayList[i].date
-            val time: String = dataArrayList[i].time
-            val bloodGlucose: Int = dataArrayList[i].bloodGlucose
+        for (i in showDiaryViewModel.dataArrayList.indices) {
+            val id: Int = showDiaryViewModel.dataArrayList[i].id
+            val date: String = showDiaryViewModel.dataArrayList[i].date
+            val time: String = showDiaryViewModel.dataArrayList[i].time
+            val bloodGlucose: Int = showDiaryViewModel.dataArrayList[i].bloodGlucose
             barEntryArrayList!!.add(BarEntry(i.toFloat(), bloodGlucose.toFloat()))
             labelsNamesArrayList!!.add(date)
         }
@@ -64,16 +63,5 @@ class ShowDiaryActivity : AppCompatActivity() {
         xAxis.labelRotationAngle = 270f
         barChart!!.animateY(2000)
         barChart!!.invalidate()
-    }
-
-    private fun fillDataArrayList() {
-        dataArrayList.clear()
-        dataArrayList.add(Data(1, "1.1.2020", "10:00", 100))
-        dataArrayList.add(Data(2, "2.1.2020", "8:00", 80))
-        dataArrayList.add(Data(3, "4.1.2020", "11:00", 140))
-        dataArrayList.add(Data(4, "5.1.2020", "12:00", 60))
-        dataArrayList.add(Data(5, "5.1.2020", "16:00", 200))
-        dataArrayList.add(Data(6, "10.1.2020", "13:00", 210))
-        dataArrayList.add(Data(7, "12.1.2020", "09:00", 120))
     }
 }
