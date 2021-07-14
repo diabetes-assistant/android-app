@@ -39,9 +39,6 @@ class ShowDiaryActivity : AppCompatActivity() {
         showDiaryViewModel.fillDataArrayList()
 
         initBarChart()
-
-        val entries: ArrayList<BarEntry> = ArrayList()
-
         val GlucoseLevelDBEntryArrayList: ArrayList<BarEntry> = ArrayList()
 
         for (i in showDiaryViewModel.dataArrayList.indices) {
@@ -51,9 +48,7 @@ class ShowDiaryActivity : AppCompatActivity() {
 
         // val barDataSet = BarDataSet(entries, "")
         val barDataSet = BarDataSet(GlucoseLevelDBEntryArrayList,"")
-
         barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
-
         val data = BarData(barDataSet)
         barChart.data = data
 
