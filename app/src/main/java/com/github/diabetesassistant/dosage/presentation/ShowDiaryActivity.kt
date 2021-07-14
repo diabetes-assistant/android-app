@@ -60,8 +60,15 @@ class ShowDiaryActivity : AppCompatActivity() {
         xAxis.setDrawAxisLine(false)
         xAxis.granularity = 1f
         xAxis.labelCount = labelsNamesArrayList!!.size
-        xAxis.labelRotationAngle = 270f
-        barChart!!.animateY(2000)
+        xAxis.labelRotationAngle = rotationAngle
+        barChart!!.animateY(animationDuration)
         barChart!!.invalidate()
+    }
+
+    // Definition von Konstanten für den BarGraph, um
+    // Magic-Number-Warnungen des static code check zu umgehen
+    companion object BarGraphPresets {
+        const val rotationAngle: Float = 270f
+        const val animationDuration: Int = 2000
     }
 }
