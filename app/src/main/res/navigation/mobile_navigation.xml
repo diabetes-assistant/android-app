@@ -33,7 +33,7 @@
     <activity
         android:id="@id/showDiaryActivity"
         android:name="com.github.diabetesassistant.dosage.presentation.ShowDiaryActivity"
-        android:label="activity_show_diary"
+        android:label="activity_showDiary"
         tools:layout="@layout/activity_show_diary" />
 
 </navigation>
