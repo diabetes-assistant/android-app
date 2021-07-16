@@ -52,6 +52,7 @@ class ShowDiaryActivity : AppCompatActivity() {
         val data = BarData(barDataSet)
         barChart.data = data
 
+        // Was macht die folgende Zeile?
         barChart.invalidate()
     }
 
@@ -100,7 +101,7 @@ class ShowDiaryActivity : AppCompatActivity() {
     // Magic-Number-Warnungen des static code check zu umgehen
     companion object BarGraphPresets {
         const val barGraphRotationAngle: Float = +90f
-        const val barGraphAnimationDuration: Int = 2000
+        const val barGraphAnimationDuration: Int = 1000
         const val barGraphGranularity: Float = 1f
     }
 }
