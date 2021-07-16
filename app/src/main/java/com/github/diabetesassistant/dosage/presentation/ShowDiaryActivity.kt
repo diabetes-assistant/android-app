@@ -40,14 +40,29 @@ class ShowDiaryActivity : AppCompatActivity() {
 
         initBarChart()
         val GlucoseLevelDBEntryArrayList: ArrayList<BarEntry> = ArrayList()
+        val dateLabelArrayList: ArrayList<String> = ArrayList()
 
         for (i in showDiaryViewModel.dataArrayList.indices) {
+            // Jetzt wird eine ArrayList mit den Daten erstellt
+            // (anhand dem showDiaryViewModel)
             val glucoseLevelDBEntry = showDiaryViewModel.dataArrayList[i]
-            GlucoseLevelDBEntryArrayList.add(BarEntry(i.toFloat(),glucoseLevelDBEntry.bloodGlucose.toFloat()))
+            GlucoseLevelDBEntryArrayList.add(
+                BarEntry(
+                    i.toFloat(),
+                    glucoseLevelDBEntry.bloodGlucose.toFloat()
+                )
+            )
+            // TODO !! Hier weitermachen mit der Datums-Beschriftung der einzelnen Säulen !!
+            // Hier geschildert, aber leider in Java:
+            // https://stackoverflow.com/questions/47637653/how-to-set-x-axis-labels-in-mp-android-chart-bar-graph/49953312
+            // Jetzt ein Array mit den Labels/ Beschriftungen der x-Achse erstellen
+            // (auch anhand showDiaryViewModel)
+            val dateLabel: String = showDiaryViewModel.dataArrayList[i].date
+            dateLabelArrayList.add(dateLabel)
         }
 
         // val barDataSet = BarDataSet(entries, "")
-        val barDataSet = BarDataSet(GlucoseLevelDBEntryArrayList,"")
+        val barDataSet = BarDataSet(GlucoseLevelDBEntryArrayList, "")
         barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
         val data = BarData(barDataSet)
         barChart.data = data
