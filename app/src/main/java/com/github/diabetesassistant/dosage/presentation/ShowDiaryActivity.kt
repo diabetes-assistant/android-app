@@ -4,7 +4,9 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.github.diabetesassistant.R
 import com.github.diabetesassistant.databinding.ActivityShowDiaryBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
@@ -13,7 +15,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 
 /**
  * https://intensecoder.com/bar-chart-tutorial-in-android-using-kotlin/
@@ -39,14 +40,14 @@ class ShowDiaryActivity : AppCompatActivity() {
         showDiaryViewModel.fillDataArrayList()
 
         initBarChart()
-        val GlucoseLevelDBEntryArrayList: ArrayList<BarEntry> = ArrayList()
+        val dBEntryArrayList: ArrayList<BarEntry> = ArrayList()
         val dateLabelArrayList: ArrayList<String> = ArrayList()
 
         for (i in showDiaryViewModel.dataArrayList.indices) {
             // Jetzt wird eine ArrayList mit den Daten erstellt
             // (anhand dem showDiaryViewModel)
             val glucoseLevelDBEntry = showDiaryViewModel.dataArrayList[i]
-            GlucoseLevelDBEntryArrayList.add(
+            dBEntryArrayList.add(
                 BarEntry(
                     i.toFloat(),
                     glucoseLevelDBEntry.bloodGlucose.toFloat()
@@ -61,34 +62,33 @@ class ShowDiaryActivity : AppCompatActivity() {
             dateLabelArrayList.add(dateLabel)
         }
 
-        // val barDataSet = BarDataSet(entries, "")
-        val barDataSet = BarDataSet(GlucoseLevelDBEntryArrayList, "")
-        barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+        val barDataSet = BarDataSet(dBEntryArrayList, "")
+        // https://stackoverflow.com/questions/31842983/getresources-getcolor-is-deprecated
+        // https://www.codegrepper.com/code-examples/kotlin/android+get+color+from+resource
+        barDataSet.setColor(ContextCompat.getColor(this, R.color.secondary_light))
         val data = BarData(barDataSet)
         barChart.data = data
-
         // Was macht die folgende Zeile?
         barChart.invalidate()
     }
 
     private fun initBarChart() {
-
         // hide grid lines
         barChart.axisLeft.setDrawGridLines(false)
         val xAxis: XAxis = barChart.xAxis
         xAxis.setDrawGridLines(false)
         xAxis.setDrawAxisLine(false)
 
-        //remove right y-axis
+        // remove right y-axis
         barChart.axisRight.isEnabled = false
 
-        //remove legend
+        // remove legend
         barChart.legend.isEnabled = false
 
-        //remove description label
+        // remove description label
         barChart.description.isEnabled = false
 
-        //add animation
+        // add animation
         barChart.animateY(barGraphAnimationDuration)
 
         // to draw label on xAxis

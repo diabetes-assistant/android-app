@@ -1,7 +1,7 @@
 package com.github.diabetesassistant.dosage.presentation
 
 import androidx.lifecycle.ViewModel
-import java.util.*
+import java.util.ArrayList
 
 class ShowDiaryViewModel : ViewModel() {
     val tag: String = "ShowDiaryViewModel"

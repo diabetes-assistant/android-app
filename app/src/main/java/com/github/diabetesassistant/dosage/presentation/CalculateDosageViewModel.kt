@@ -27,6 +27,7 @@ class CalculateDosageViewModel : ViewModel() {
      * TODO es darf natürlich keine negativen Dosisempfehlungen geben
      * TODO Hier die Grenzwerte und die entsprechenden Warnungen/
      * TODO Empfehlungen implentieren, wenn diese über-/ unterschritten werden?
+     * TODO !! Die Formel finalisieren mit Grenzwerten und negative Werte verhindern !!
      */
     fun calculateInsulinDosage() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
