@@ -96,7 +96,7 @@ class ShowDiaryActivity : AppCompatActivity() {
         // to draw label on xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
         // xAxis.valueFormatter = MyAxisFormatter()
-        xAxis.valueFormatter=xAxisValueFormatter()
+        xAxis.valueFormatter = xAxisValueFormatter()
         xAxis.setDrawLabels(true)
         xAxis.granularity = barGraphGranularity
         xAxis.labelRotationAngle = barGraphRotationAngle
@@ -107,7 +107,6 @@ class ShowDiaryActivity : AppCompatActivity() {
         override fun getFormattedValue(value: Float, axisBase: AxisBase): String {
             return dateLabelArrayList[value.toInt()]
         }
-
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
