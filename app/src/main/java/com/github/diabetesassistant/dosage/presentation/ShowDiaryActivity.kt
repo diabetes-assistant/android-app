@@ -1,6 +1,5 @@
 package com.github.diabetesassistant.dosage.presentation
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -39,6 +38,7 @@ class ShowDiaryActivity : AppCompatActivity() {
         showDiaryViewModel = ViewModelProvider(this).get(ShowDiaryViewModel::class.java)
         barChart = binding.barChartOne
         showDiaryViewModel.fillDataArrayList()
+        showDiaryViewModel.sortDataArrayList()
 
         initBarChart()
         val dBEntryArrayList: ArrayList<BarEntry> = ArrayList()
@@ -53,11 +53,7 @@ class ShowDiaryActivity : AppCompatActivity() {
                     glucoseLevelDBEntry.bloodGlucose.toFloat()
                 )
             )
-            // TODO !! Hier weitermachen mit der Datums-Beschriftung der einzelnen Säulen !!
-            // Hier geschildert, aber leider in Java:
-            // https://stackoverflow.com/questions/47637653/how-to-set-x-axis-labels-in-mp-android-chart-bar-graph/49953312
-            // Jetzt ein Array mit den Labels/ Beschriftungen der x-Achse erstellen
-            // (auch anhand showDiaryViewModel)
+            // TODO !! Hier weitermachen, die Blutzuckerwerte nach Datum sortieren !!
             val dateLabel: String = showDiaryViewModel.dataArrayList[i].date
             dateLabelArrayList.add(dateLabel)
             Log.i(tag, "dateLabelArrayList[" + i + "]=" + dateLabelArrayList[i])
@@ -96,29 +92,17 @@ class ShowDiaryActivity : AppCompatActivity() {
         // to draw label on xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
         // xAxis.valueFormatter = MyAxisFormatter()
-        xAxis.valueFormatter = xAxisValueFormatter()
+        xAxis.valueFormatter = indexAxisValueFormatter()
         xAxis.setDrawLabels(true)
         xAxis.granularity = barGraphGranularity
         xAxis.labelRotationAngle = barGraphRotationAngle
     }
 
-    inner class xAxisValueFormatter : IndexAxisValueFormatter() {
+    // https://stackoverflow.com/questions/47637653/how-to-set-x-axis-labels-in-mp-android-chart-bar-graph
+    inner class indexAxisValueFormatter : IndexAxisValueFormatter() {
 
         override fun getFormattedValue(value: Float, axisBase: AxisBase): String {
             return dateLabelArrayList[value.toInt()]
-        }
-    }
-
-    inner class MyAxisFormatter : IndexAxisValueFormatter() {
-
-        fun getAxisLabel(value: Float): String {
-            val index = value.toInt()
-            Log.d(TAG, "getAxisLabel: index $index")
-            return if (index < showDiaryViewModel.dataArrayList.size) {
-                showDiaryViewModel.dataArrayList[index].date
-            } else {
-                ""
-            }
         }
     }
 

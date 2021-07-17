@@ -20,6 +20,12 @@ class ShowDiaryViewModel : ViewModel() {
         dataArrayList.add(GlucoseLevelDBEntry(counter++, date_07, time_07, bloodGlucose_07))
     }
 
+    // TODO !! Hier weitermachen, um die dataArrayList nach Datum der GlucoseLevelDBEntry zu sortieren !!
+    fun sortDataArrayList() {
+        // https://stackoverflow.com/questions/54925794/sort-list-with-string-date-kotlin
+        // dataArrayList.sortByAscending{GlucoseLevelDBEntry.date}
+    }
+
     // Konstanten nur für den Test
     companion object PresetDBEntries {
         // date constants
