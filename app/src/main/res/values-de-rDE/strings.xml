@@ -17,7 +17,7 @@
     <string name="menu_login">Einloggen / Registrieren</string>
     <string name="menu_calculate_insulin_dosage">Insulindosis berechnen</string>
     <string name="menu_dashboard">Dashboard</string>
-    <string name="menu_show_diary">Blutzuckertagebuch anzeigen</string>
+    <string name="menu_show_diary">Blutzuckertagebuch</string>
 
     <string name="title_activity_login">Log-in</string>
     <string name="login_description">Loggen Sie sich bitten ein, um alle Features nutzen zu können.</string>

@@ -27,13 +27,14 @@ class ShowDiaryActivity : AppCompatActivity() {
     val tag: String = "ShowDiaryActivity"
 
     private lateinit var barChart: BarChart
+    val dateLabelArrayList: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.v(tag, "Wechsel in die ShowDiaryActivity erfolgreich (1)")
-
         super.onCreate(savedInstanceState)
         binding = ActivityShowDiaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Zurück-Button erscheint, aber funktioniert merkwürdigerweise nicht
+        // trotz der folgenden Zeile
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showDiaryViewModel = ViewModelProvider(this).get(ShowDiaryViewModel::class.java)
         barChart = binding.barChartOne
@@ -41,7 +42,6 @@ class ShowDiaryActivity : AppCompatActivity() {
 
         initBarChart()
         val dBEntryArrayList: ArrayList<BarEntry> = ArrayList()
-        val dateLabelArrayList: ArrayList<String> = ArrayList()
 
         for (i in showDiaryViewModel.dataArrayList.indices) {
             // Jetzt wird eine ArrayList mit den Daten erstellt
@@ -60,7 +60,9 @@ class ShowDiaryActivity : AppCompatActivity() {
             // (auch anhand showDiaryViewModel)
             val dateLabel: String = showDiaryViewModel.dataArrayList[i].date
             dateLabelArrayList.add(dateLabel)
+            Log.i(tag, "dateLabelArrayList[" + i + "]=" + dateLabelArrayList[i])
         }
+        Log.i(tag, "dateLabelArrayList.size=" + dateLabelArrayList.size)
 
         val barDataSet = BarDataSet(dBEntryArrayList, "")
         // https://stackoverflow.com/questions/31842983/getresources-getcolor-is-deprecated
@@ -93,15 +95,24 @@ class ShowDiaryActivity : AppCompatActivity() {
 
         // to draw label on xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
-        xAxis.valueFormatter = MyAxisFormatter()
+        // xAxis.valueFormatter = MyAxisFormatter()
+        xAxis.valueFormatter=xAxisValueFormatter()
         xAxis.setDrawLabels(true)
         xAxis.granularity = barGraphGranularity
         xAxis.labelRotationAngle = barGraphRotationAngle
     }
 
+    inner class xAxisValueFormatter : IndexAxisValueFormatter() {
+
+        override fun getFormattedValue(value: Float, axisBase: AxisBase): String {
+            return dateLabelArrayList[value.toInt()]
+        }
+
+    }
+
     inner class MyAxisFormatter : IndexAxisValueFormatter() {
 
-        fun getAxisLabel(value: Float, axis: AxisBase?): String {
+        fun getAxisLabel(value: Float): String {
             val index = value.toInt()
             Log.d(TAG, "getAxisLabel: index $index")
             return if (index < showDiaryViewModel.dataArrayList.size) {
