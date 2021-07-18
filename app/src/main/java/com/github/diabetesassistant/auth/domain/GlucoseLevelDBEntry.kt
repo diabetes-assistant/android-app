@@ -1,4 +1,4 @@
-package com.github.diabetesassistant.dosage.presentation
+package com.github.diabetesassistant.auth.domain
 
 import java.time.LocalDateTime
 

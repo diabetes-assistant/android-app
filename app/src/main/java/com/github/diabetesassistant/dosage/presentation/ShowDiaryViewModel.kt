@@ -2,6 +2,7 @@ package com.github.diabetesassistant.dosage.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.github.diabetesassistant.auth.domain.GlucoseLevelDBEntry
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.ArrayList
