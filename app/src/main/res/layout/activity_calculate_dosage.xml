@@ -89,7 +89,8 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_small"
                         android:text="@string/calculate_dosage_clear"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        android:textAllCaps="false"/>
 
                     <Button
                         android:id="@+id/calculate_dosage_save"
@@ -97,7 +98,8 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_small"
                         android:text="@string/calculate_dosage_save"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        android:textAllCaps="false"/>
 
             </LinearLayout>
 
