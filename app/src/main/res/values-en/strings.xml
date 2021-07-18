@@ -48,4 +48,6 @@
     <string name="calculate_dosage_glucose_level_too_high">Glucose level too high, Please consult your doctor!</string>
     <string name="calculate_dosage_glucose_level_too_low">Glucose level too low, eat or drink your emergency meal urgently!</string>
     <string name="calculate_dosage_no_insulin_recommended">Do not inject insulin!</string>
+    <string name="calculate_dosage_clear">Clear input for new calculation</string>
+    <string name="calculate_dosage_save">Save calculation in diary</string>
 </resources>

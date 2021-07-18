@@ -1,7 +1,9 @@
 package com.github.diabetesassistant.dosage.presentation
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
@@ -24,8 +26,9 @@ class CalculateDosageActivity : AppCompatActivity() {
         binding.calculateDosageAmountCarbohydrates
             .doOnTextChanged(this::setAmountCarbohydratesState)
         binding.calculateDosageSubmitButton.setOnClickListener(this::handleSubmit)
-        // TODO Bez. binding.calculateDosageResult:
-        // TODO Reicht es, wenn das entsprechende Feld im ViewModel über die Methode handleSubmit verändert wird?
+        binding.calculateDosageResultDescription.setText("")
+        binding.calculateDosageSave.setText("")
+        binding.calculateDosageClear.setText("")
     }
 
     // TODO wann immer die Patient:in neue Werte eingibt muss der Wert für die empfohlene Insulindosis zunächst
@@ -37,6 +40,13 @@ class CalculateDosageActivity : AppCompatActivity() {
             "",
             Snackbar.LENGTH_LONG
         )
+        // Um den snackbar oben in der Activity darzustellen:
+        // https://stackoverflow.com/questions/31746300/how-to-show-snackbar-at-top-of-the-screen
+        val view = errorSnackbar.view
+        val params = view.layoutParams as FrameLayout.LayoutParams
+        params.gravity = Gravity.TOP
+        view.layoutParams = params
+
         if (calculateDosageViewModel.isInvalid()) {
             // https://stackoverflow.com/questions/44871481/how-to-access-values-from-strings-xml
             errorSnackbar.setText(getString(R.string.calculate_dosage_invalid_input))
@@ -51,14 +61,24 @@ class CalculateDosageActivity : AppCompatActivity() {
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber findet im ViewModel statt
-            // TODO Button für die Berechnung weiter nach oben und Schrift größer machen,
-            // TODO vor allem in der Berechnungs-Activity
             calculateDosageViewModel.calculateInsulinDosage()
             if (calculateDosageViewModel.insulinDosageRecommended.value.toString().toInt() > 0) {
+                // Wenn die Berechnung richtig verlaufen ist, dann
+                // könnte man in die ShowCalculationResultActivity wechseln
+                // startActivity(Intent(this, ShowCalculationResult::class.java))
+
+                // Alternativ: Alles weitere in dieser Activity veranlassen
                 binding.calculateDosageResult
                     .setText(
-                        this.calculateDosageViewModel.insulinDosageRecommended.value +" IE"
+                        this.calculateDosageViewModel.insulinDosageRecommended.value + " IE"
                     )
+                binding.calculateDosageResultDescription.setText(getString(R.string.calculate_dosage_result_description))
+                val viewCalculateDosageClear: View = binding.calculateDosageClear
+                viewCalculateDosageClear.visibility=View.VISIBLE
+                val viewCalculateDosageSave: View = binding.calculateDosageSave
+                viewCalculateDosageSave.visibility=View.VISIBLE
+
+
             } else {
                 errorSnackbar.setText(getString(R.string.calculate_dosage_no_insulin_recommended))
                 errorSnackbar.show()

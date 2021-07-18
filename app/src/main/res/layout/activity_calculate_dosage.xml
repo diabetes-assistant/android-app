@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="false">
 
                 <Button
                     android:id="@+id/calculate_dosage_submit_button"
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/padding_small"
                         android:textSize="@dimen/text_size_normal"
-                        android:text="@string/calculate_dosage_result_description"/>
+                        android:text="@string/calculate_dosage_result_description" />
 
                     <!-- Der Text dieser TextView wird erst nach Berechnung der Dosis gesetzt -->
                     <TextView
@@ -83,11 +83,27 @@
                         android:textSize="@dimen/text_size_normal"
                         android:text=""/>
 
-                <!-- Evtl. noch einen Button "Save in diary as injected dosage" hinzufügen -->
+                    <Button
+                        android:id="@+id/calculate_dosage_clear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_small"
+                        android:text="@string/calculate_dosage_clear"
+                        android:visibility="invisible"/>
+
+                    <Button
+                        android:id="@+id/calculate_dosage_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_small"
+                        android:text="@string/calculate_dosage_save"
+                        android:visibility="invisible"/>
 
             </LinearLayout>
 
         </RelativeLayout>
+
+
 
     </LinearLayout>
 
