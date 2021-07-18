@@ -54,8 +54,11 @@ class ShowDiaryActivity : AppCompatActivity() {
                     glucoseLevelDBEntry.bloodGlucose.toFloat()
                 )
             )
+
             val dateLabel: String = showDiaryViewModel.dataArrayList[i].dateTime.format(
-                dateTimeFormatter)
+                dateTimeFormatter
+            )
+
             dateLabelArrayList.add(dateLabel)
             Log.i(tag, "dateLabelArrayList[" + i + "]=" + dateLabelArrayList[i])
         }
@@ -92,16 +95,17 @@ class ShowDiaryActivity : AppCompatActivity() {
         barChart.animateY(barGraphAnimationDuration)
 
         // to draw label on xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+
         // xAxis.valueFormatter = MyAxisFormatter()
-        xAxis.valueFormatter = indexAxisValueFormatter()
+        xAxis.valueFormatter = valueFormatter()
         xAxis.setDrawLabels(true)
         xAxis.granularity = barGraphGranularity
         xAxis.labelRotationAngle = barGraphRotationAngle
     }
 
     // https://stackoverflow.com/questions/47637653/how-to-set-x-axis-labels-in-mp-android-chart-bar-graph
-    inner class indexAxisValueFormatter : IndexAxisValueFormatter() {
+    inner class valueFormatter : IndexAxisValueFormatter() {
         override fun getFormattedValue(value: Float, axisBase: AxisBase): String {
             return dateLabelArrayList[value.toInt()]
         }
