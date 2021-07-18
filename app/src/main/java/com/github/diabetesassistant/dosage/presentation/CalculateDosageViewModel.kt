@@ -3,6 +3,8 @@ package com.github.diabetesassistant.dosage.presentation
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.diabetesassistant.R
+import com.google.android.material.snackbar.Snackbar
 import kotlin.math.roundToInt
 
 class CalculateDosageViewModel : ViewModel() {
@@ -13,12 +15,31 @@ class CalculateDosageViewModel : ViewModel() {
     val carbohydrateAmount = MutableLiveData("")
     val insulinDosageRecommended = MutableLiveData("")
 
-    // TODO Hier noch klären, ob schon Blutzuckerober- und -untergrenzen berücksichtigt werden sollen
-    // TODO Gibt es noch andere Eingaben, die invalid sind?
+    /**
+     * Es wird geprüft, ob überhaupt Eingaben gemacht wurden und
+     * ob diese ganze Zahlen sind
+     */
     fun isInvalid(): Boolean {
+        try {
+            val glucoseLevelInt = this.glucoseLevel.value.toString().toInt()
+            val carbohydrateAmountInt = this.carbohydrateAmount.value.toString().toInt()
+        } catch (e: NumberFormatException) {
+            return false
+        }
         return this.glucoseLevel.value
             .isNullOrBlank() || this.carbohydrateAmount
             .value.isNullOrBlank()
+    }
+
+    /**
+     * Hier werden die Blutzuckerober- und -untergrenzen berücksichtigt
+     */
+    fun isGlucoseLevelTooHigh(): Boolean {
+        return this.glucoseLevel.value.toString().toInt() > glucoseLevelOuterBoundsHigh
+    }
+
+    fun isGlucoseLevelTooLow(): Boolean {
+        return this.glucoseLevel.value.toString().toInt() < glucoseLevelOuterBoundsLow
     }
 
     /**

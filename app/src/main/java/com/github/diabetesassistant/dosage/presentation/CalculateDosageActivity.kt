@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
+import com.github.diabetesassistant.R
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -33,11 +34,16 @@ class CalculateDosageActivity : AppCompatActivity() {
     private fun handleSubmit(view: View) {
         val errorSnackbar = Snackbar.make(
             binding.calculateDosageContainer,
-            "Calculation failed",
+            "",
             Snackbar.LENGTH_LONG
         )
         if (calculateDosageViewModel.isInvalid()) {
+            errorSnackbar.setText(getString(R.string.calculate_dosage_invalid_input))
             errorSnackbar.show()
+        } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
+            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
+        } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
+            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber habe ich ins ViewModel verschoben
