@@ -70,13 +70,12 @@ class CalculateDosageActivity : AppCompatActivity() {
                     .setText(
                         this.calculateDosageViewModel.insulinDosageRecommended.value + " IE"
                     )
-                binding.calculateDosageResultDescription.setText(getString(R.string.calculate_dosage_result_description))
+                binding.calculateDosageResultDescription.setText(getString(
+                    R.string.calculate_dosage_result_description))
                 val viewCalculateDosageClear: View = binding.calculateDosageClear
-                viewCalculateDosageClear.visibility=View.VISIBLE
+                viewCalculateDosageClear.visibility = View.VISIBLE
                 val viewCalculateDosageSave: View = binding.calculateDosageSave
-                viewCalculateDosageSave.visibility=View.VISIBLE
-
-
+                viewCalculateDosageSave.visibility = View.VISIBLE
             } else {
                 errorSnackbar.setText(getString(R.string.calculate_dosage_no_insulin_recommended))
                 errorSnackbar.show()

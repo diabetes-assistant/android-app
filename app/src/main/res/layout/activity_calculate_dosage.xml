@@ -64,7 +64,8 @@
                     android:id="@+id/calculate_dosage_submit_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/calculate_dosage_submit_button" />
+                    android:text="@string/calculate_dosage_submit_button"
+                    android:textAllCaps="false"/>
 
                 <TextView
                         android:id="@+id/calculate_dosage_result_description"
@@ -102,13 +103,6 @@
                         android:textAllCaps="false"/>
 
             </LinearLayout>
-
         </RelativeLayout>
-
-
-
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
