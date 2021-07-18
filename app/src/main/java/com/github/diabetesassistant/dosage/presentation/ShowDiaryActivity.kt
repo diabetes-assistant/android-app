@@ -44,8 +44,6 @@ class ShowDiaryActivity : AppCompatActivity() {
         val dBEntryArrayList: ArrayList<BarEntry> = ArrayList()
 
         for (i in showDiaryViewModel.dataArrayList.indices) {
-            // Jetzt wird eine ArrayList mit den Daten erstellt
-            // (anhand dem showDiaryViewModel)
             val glucoseLevelDBEntry = showDiaryViewModel.dataArrayList[i]
             dBEntryArrayList.add(
                 BarEntry(
@@ -53,7 +51,6 @@ class ShowDiaryActivity : AppCompatActivity() {
                     glucoseLevelDBEntry.bloodGlucose.toFloat()
                 )
             )
-            // TODO !! Hier weitermachen, die Blutzuckerwerte nach Datum sortieren !!
             val dateLabel: String = showDiaryViewModel.dataArrayList[i].date
             dateLabelArrayList.add(dateLabel)
             Log.i(tag, "dateLabelArrayList[" + i + "]=" + dateLabelArrayList[i])
