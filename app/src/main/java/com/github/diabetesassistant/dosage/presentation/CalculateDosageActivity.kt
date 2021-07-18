@@ -38,22 +38,31 @@ class CalculateDosageActivity : AppCompatActivity() {
             Snackbar.LENGTH_LONG
         )
         if (calculateDosageViewModel.isInvalid()) {
+            // https://stackoverflow.com/questions/44871481/how-to-access-values-from-strings-xml
             errorSnackbar.setText(getString(R.string.calculate_dosage_invalid_input))
             errorSnackbar.show()
+            return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
             errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
+            errorSnackbar.show()
         } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
             errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
+            errorSnackbar.show()
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
-            // die Berechnung selber habe ich ins ViewModel verschoben
+            // die Berechnung selber findet im ViewModel statt
             // TODO Button für die Berechnung weiter nach oben und Schrift größer machen,
             // TODO vor allem in der Berechnungs-Activity
             calculateDosageViewModel.calculateInsulinDosage()
-            binding.calculateDosageResult
-                .setText(
-                    this.calculateDosageViewModel.insulinDosageRecommended.value + " IE"
-                )
+            if (calculateDosageViewModel.insulinDosageRecommended.value.toString().toInt() > 0) {
+                binding.calculateDosageResult
+                    .setText(
+                        this.calculateDosageViewModel.insulinDosageRecommended.value +" IE"
+                    )
+            } else {
+                errorSnackbar.setText(getString(R.string.calculate_dosage_no_insulin_recommended))
+                errorSnackbar.show()
+            }
         }
     }
 

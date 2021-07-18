@@ -1,10 +1,7 @@
 package com.github.diabetesassistant.dosage.presentation
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.diabetesassistant.R
-import com.google.android.material.snackbar.Snackbar
 import kotlin.math.roundToInt
 
 class CalculateDosageViewModel : ViewModel() {
@@ -16,16 +13,11 @@ class CalculateDosageViewModel : ViewModel() {
     val insulinDosageRecommended = MutableLiveData("")
 
     /**
-     * Es wird geprüft, ob überhaupt Eingaben gemacht wurden und
-     * ob diese ganze Zahlen sind
+     * Es wird geprüft, ob überhaupt Eingaben gemacht wurden
+     * Da nur ganze Zahlen eingegeben werden können erübrigt
+     * sich die entsprechende Prüfung der Eingaben.
      */
     fun isInvalid(): Boolean {
-        try {
-            val glucoseLevelInt = this.glucoseLevel.value.toString().toInt()
-            val carbohydrateAmountInt = this.carbohydrateAmount.value.toString().toInt()
-        } catch (e: NumberFormatException) {
-            return false
-        }
         return this.glucoseLevel.value
             .isNullOrBlank() || this.carbohydrateAmount
             .value.isNullOrBlank()
@@ -44,10 +36,6 @@ class CalculateDosageViewModel : ViewModel() {
 
     /**
      * Berechnung der Insulindosis
-     * TODO es darf natürlich keine negativen Dosisempfehlungen geben
-     * TODO Hier die Grenzwerte und die entsprechenden Warnungen/
-     * TODO Empfehlungen implentieren, wenn diese über-/ unterschritten werden?
-     * TODO !! Die Formel finalisieren mit Grenzwerten und negative Werte verhindern !!
      */
     fun calculateInsulinDosage() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
@@ -57,10 +45,14 @@ class CalculateDosageViewModel : ViewModel() {
         // TODO ceil nutzen, damit aufgerundet wird
         val correctionStepsInt: Int =
             (glucoseLevelDiscrepancy / Presets.glucoseLevelCorrectionInterval)
-        val insulinDosageRecommended =
+        val insulinDosageCalculated =
             insulinStandardDosage + (correctionStepsInt * Presets.glucoseLevelCorrectionDosage)
-        this.insulinDosageRecommended.value = insulinDosageRecommended.toString()
-        Log.v(tag, "insulinDosageRecommended= " + this.insulinDosageRecommended.value.toString())
+        if (insulinDosageCalculated > 0) {
+            this.insulinDosageRecommended.value =
+                insulinDosageCalculated.toString()
+        } else {
+            this.insulinDosageRecommended.value = "0"
+        }
     }
 
     /**  Durch die Ärzt:in voreingestellte Felder
