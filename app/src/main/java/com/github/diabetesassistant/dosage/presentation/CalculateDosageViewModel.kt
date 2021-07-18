@@ -55,6 +55,12 @@ class CalculateDosageViewModel : ViewModel() {
         }
     }
 
+    fun clearViewModel() {
+        this.glucoseLevel.value = ""
+        this.carbohydrateAmount.value=""
+        this.insulinDosageRecommended.value=""
+    }
+
     /**  Durch die Ärzt:in voreingestellte Felder
      * Hier zu Testzwecken als Konstanten gesetzt
      *
