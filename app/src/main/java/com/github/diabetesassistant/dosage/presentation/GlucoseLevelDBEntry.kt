@@ -1,3 +1,5 @@
 package com.github.diabetesassistant.dosage.presentation
 
-class GlucoseLevelDBEntry(var id: Int, var date: String, var time: String, var bloodGlucose: Int)
+import java.time.LocalDateTime
+
+class GlucoseLevelDBEntry(var id: Int, var dateTime: LocalDateTime, var bloodGlucose: Int)

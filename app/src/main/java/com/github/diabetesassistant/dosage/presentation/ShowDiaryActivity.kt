@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import java.time.format.DateTimeFormatter
 
 /**
  * https://intensecoder.com/bar-chart-tutorial-in-android-using-kotlin/
@@ -27,6 +28,8 @@ class ShowDiaryActivity : AppCompatActivity() {
 
     private lateinit var barChart: BarChart
     val dateLabelArrayList: ArrayList<String> = ArrayList()
+
+    val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'  'HH:mm")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +54,15 @@ class ShowDiaryActivity : AppCompatActivity() {
                     glucoseLevelDBEntry.bloodGlucose.toFloat()
                 )
             )
-            val dateLabel: String = showDiaryViewModel.dataArrayList[i].date
+            val dateLabel: String = showDiaryViewModel.dataArrayList[i].dateTime.format(
+                dateTimeFormatter)
             dateLabelArrayList.add(dateLabel)
             Log.i(tag, "dateLabelArrayList[" + i + "]=" + dateLabelArrayList[i])
         }
         Log.i(tag, "dateLabelArrayList.size=" + dateLabelArrayList.size)
 
         val barDataSet = BarDataSet(dBEntryArrayList, "")
+        // Farbe der Säulen im BarGraph ändern und dabei eine color-Resource nutzen
         // https://stackoverflow.com/questions/31842983/getresources-getcolor-is-deprecated
         // https://www.codegrepper.com/code-examples/kotlin/android+get+color+from+resource
         barDataSet.setColor(ContextCompat.getColor(this, R.color.secondary_light))
@@ -97,7 +102,6 @@ class ShowDiaryActivity : AppCompatActivity() {
 
     // https://stackoverflow.com/questions/47637653/how-to-set-x-axis-labels-in-mp-android-chart-bar-graph
     inner class indexAxisValueFormatter : IndexAxisValueFormatter() {
-
         override fun getFormattedValue(value: Float, axisBase: AxisBase): String {
             return dateLabelArrayList[value.toInt()]
         }
