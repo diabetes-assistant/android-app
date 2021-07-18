@@ -13,7 +13,6 @@ import com.github.diabetesassistant.auth.domain.InsulinDosageDBEntry
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class CalculateDosageActivity : AppCompatActivity() {
 
@@ -95,9 +94,15 @@ class CalculateDosageActivity : AppCompatActivity() {
 
     private fun handleClear(view: View) {
         this.calculateDosageViewModel.clearViewModel()
-        binding.calculateDosageGlucoseLevel.setText(calculateDosageViewModel.glucoseLevel.value.toString())
-        binding.calculateDosageAmountCarbohydrates.setText(calculateDosageViewModel.carbohydrateAmount.value.toString())
-        binding.calculateDosageResult.setText(calculateDosageViewModel.insulinDosageRecommended.value.toString())
+        binding.calculateDosageGlucoseLevel.setText(
+            calculateDosageViewModel.glucoseLevel.value.toString()
+        )
+        binding.calculateDosageAmountCarbohydrates.setText(
+            calculateDosageViewModel.carbohydrateAmount.value.toString()
+        )
+        binding.calculateDosageResult.setText(
+                calculateDosageViewModel.insulinDosageRecommended.value.toString()
+        )
         val viewCalculateDosageClear: View = binding.calculateDosageClear
         viewCalculateDosageClear.visibility = View.INVISIBLE
         val viewCalculateDosageSave: View = binding.calculateDosageSave
@@ -109,7 +114,6 @@ class CalculateDosageActivity : AppCompatActivity() {
      * TODO ArrayList anfügen und diese dann in der ShowDiaryActivity sichtbar machen.
      */
     private fun handleSave(view: View) {
-        val dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'  'HH:mm")
         val currentDateTime: LocalDateTime = LocalDateTime.now()
         var glucoseLevelDBEntry: GlucoseLevelDBEntry = GlucoseLevelDBEntry(
             0, currentDateTime,
