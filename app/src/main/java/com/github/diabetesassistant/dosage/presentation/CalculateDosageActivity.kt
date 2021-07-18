@@ -27,8 +27,6 @@ class CalculateDosageActivity : AppCompatActivity() {
             .doOnTextChanged(this::setAmountCarbohydratesState)
         binding.calculateDosageSubmitButton.setOnClickListener(this::handleSubmit)
         binding.calculateDosageResultDescription.setText("")
-        binding.calculateDosageSave.setText("")
-        binding.calculateDosageClear.setText("")
     }
 
     // TODO wann immer die Patient:in neue Werte eingibt muss der Wert für die empfohlene Insulindosis zunächst
