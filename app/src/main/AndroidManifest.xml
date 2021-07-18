@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DiabetesAssistant">
-        <activity android:name=".dosage.presentation.ShowCalculationResult"></activity>
         <activity android:name=".dosage.presentation.ShowDiaryActivity" />
         <activity
             android:name=".MainActivity"
