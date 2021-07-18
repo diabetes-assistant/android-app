@@ -7,8 +7,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito
-import kotlin.math.ceil
-import kotlin.math.roundToInt
 
 class DosageServiceTest {
     private fun fixtures(): Pair<DosageClient, DosageService> {
