@@ -9,7 +9,6 @@ class CalculateDosageViewModel : ViewModel() {
     val tag: String = "CalculateDosageViewModel"
 
     // Felder, die auch im UI sichtbar sind
-    // TODO wieso werden hier val (final) und nicht var verwendet?
     val glucoseLevel = MutableLiveData("")
     val carbohydrateAmount = MutableLiveData("")
     val insulinDosageRecommended = MutableLiveData("")

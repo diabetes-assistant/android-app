@@ -88,8 +88,12 @@ class ShowDiaryActivity : AppCompatActivity() {
         // remove legend
         barChart.legend.isEnabled = false
 
-        // remove description label
-        barChart.description.isEnabled = false
+        // description label
+        // TODO Titel aus string-Resource holen und Lokalisation nach links oben
+        // TODO Besser noch den Titel der Activity ändern und die description entfernen
+        barChart.description.text = "Blutzuckerspiegel"
+        barChart.description.isEnabled = true
+        // barChart.description.setPosition(10f,5f)
 
         // add animation
         barChart.animateY(barGraphAnimationDuration)
