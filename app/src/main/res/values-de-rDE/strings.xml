@@ -44,4 +44,7 @@
     <string name="calculate_dosage_result_description">Empfohlene Insulindosis:</string>
     <string name="calculate_dosage_result">Insulindosis [IE]</string>
     <string name="calculate_dosage_submit_button">Insulindosis berechnen</string>
+    <string name="calculate_dosage_invalid_input">Falsche Eingaben, Berechnung fehlgeschlagen</string>
+    <string name="calculate_dosage_glucose_level_too_high">Blutzuckerspiegel zu hoch, konsultieren Sie umgehend Ihren Arzt/ Ihre Ärztin!</string>
+    <string name="calculate_dosage_glucose_level_too_low">Blutzuckerspiegel zu niedrig, nehmen Sie umgehend Ihre Notfallmahlzeit ein!</string>
 </resources>
