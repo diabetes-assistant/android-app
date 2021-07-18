@@ -1,13 +1,12 @@
 package com.github.diabetesassistant.dosage.domain
 
-import com.auth0.jwt.interfaces.DecodedJWT
 import com.github.diabetesassistant.auth.data.UserDTO
-import org.mockito.Mockito
 import com.github.diabetesassistant.dosage.data.DosageClient
 import com.github.diabetesassistant.dosage.data.InsulinPresetsDTO
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
+import org.mockito.Mockito
 
 class DosageServiceTest {
     private fun fixtures(): Pair<DosageClient, DosageService> {
@@ -21,18 +20,20 @@ class DosageServiceTest {
         runBlocking {
             val (clientMock, testee) = fixtures()
             val user = UserDTO("123", "foo@email.com", "patient")
-            val presets = Result.success(InsulinPresetsDTO(
-               0.5,
-                   20,
-                2,
+            val presets = Result.success(
+                InsulinPresetsDTO(
+                    0.5,
+                    20,
+                    2,
                     120,
                     260,
                     80
-            ))
+                )
+            )
             Mockito.`when`(clientMock.getInsulinPresets(user)).thenReturn(presets)
 
-            val actual = testee.calculateDosage("123", "foo@email.com")
-            val expected = Result.success(Token("access", decodedJWT))
+            val actual = testee.calculateDosage("123", "foo@email.com", 150, 5)
+            val expected = Result.success(5)
 
             Assert.assertEquals(expected, actual)
         }

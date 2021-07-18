@@ -101,7 +101,7 @@ class CalculateDosageActivity : AppCompatActivity() {
             calculateDosageViewModel.carbohydrateAmount.value.toString()
         )
         binding.calculateDosageResult.setText(
-                calculateDosageViewModel.insulinDosageRecommended.value.toString()
+            calculateDosageViewModel.insulinDosageRecommended.value.toString()
         )
         val viewCalculateDosageClear: View = binding.calculateDosageClear
         viewCalculateDosageClear.visibility = View.INVISIBLE
