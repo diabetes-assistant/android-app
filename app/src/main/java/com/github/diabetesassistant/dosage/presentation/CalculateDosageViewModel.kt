@@ -2,6 +2,7 @@ package com.github.diabetesassistant.dosage.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlin.math.ceil
 import kotlin.math.roundToInt
 
 class CalculateDosageViewModel : ViewModel() {
@@ -40,11 +41,11 @@ class CalculateDosageViewModel : ViewModel() {
     fun calculateInsulinDosage() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
         val insulinStandardDosage: Int = (carbohydrateAmountInt * Presets.keFactor).roundToInt()
-        val glucoseLevelDiscrepancy: Int =
-            this.glucoseLevel.value.toString().toInt() - Presets.glucoseLevelUpperNormalLimit
-        // TODO ceil nutzen, damit aufgerundet wird
+        val glucoseLevelDiscrepancy: Double =
+            (this.glucoseLevel.value.toString().toInt() - Presets.glucoseLevelUpperNormalLimit).toDouble()
+        // TODO ceil wird genutzt, damit aufgerundet wird
         val correctionStepsInt: Int =
-            (glucoseLevelDiscrepancy / Presets.glucoseLevelCorrectionInterval)
+            (ceil(glucoseLevelDiscrepancy / Presets.glucoseLevelCorrectionInterval)).toInt()
         val insulinDosageCalculated =
             insulinStandardDosage + (correctionStepsInt * Presets.glucoseLevelCorrectionDosage)
         if (insulinDosageCalculated > 0) {
@@ -71,7 +72,7 @@ class CalculateDosageViewModel : ViewModel() {
         // per intake of 1 carbohydrate unit (10 g of carbohydrates)
         // Will finally be entered by the doctor but is arbitrarily set here to 0.5 for testing purposes
         // TODO sollte durch Ärzt:in gesetzt werden
-        const val keFactor: Float = 0.5F
+        const val keFactor: Float = 0.8F
 
         // Größe eines Korrekturintervalls/ Korrekturschrittes in [mg/dl]
         // TODO sollte durch Ärzt:in gesetzt werden, hier aber zu Testzwecken erstmal auf 20 mg/dl gesetzt
