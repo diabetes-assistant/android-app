@@ -60,24 +60,17 @@ class CalculateDosageActivity : AppCompatActivity() {
             return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
             // Am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
-            // nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen
-
+            // nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen,
+            // ein snackbar wäre zu wenig eindrucksvoll
             var intent: Intent? = null
             intent = Intent(applicationContext, WarningActivity::class.java)
             intent.putExtra("errorType", 1)
             startActivity(intent)
-
-            /* Die Snackbar-Einblendung ist für die Blutzucker-Warnungen zu wenig
-            // eindrucksvoll, daher hier deaktiviert
-            // TODO Hintergrund-Farbe des snackbar lässt sich merkwürdigerweise nicht ändern
-            // errorSnackbar.view.setBackgroundColor(getColor(R.color.white))
-            errorSnackbar.setTextColor(getColor(R.color.red_warning))
-            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
-            errorSnackbar.show()
-            */
         } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
-            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
-            errorSnackbar.show()
+            var intent: Intent? = null
+            intent = Intent(applicationContext, WarningActivity::class.java)
+            intent.putExtra("errorType", 2)
+            startActivity(intent)
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber findet im ViewModel statt

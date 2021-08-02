@@ -10,7 +10,7 @@ class WarningActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityWarningBinding.inflate(layoutInflater)
+        binding = ActivityWarningBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.linearLayout.setBackgroundColor(getColor(R.color.red_warning))
@@ -18,12 +18,12 @@ class WarningActivity : AppCompatActivity() {
         // Herausfinden, ob die Activity wegen zu hohem oder zu niedrigem
         // Blutzuckerspiegel gestartet wurde
         val extras = intent.extras
-        val errorType : Int = extras!!.getInt("errorType")
+        val errorType: Int = extras!!.getInt("errorType")
         // Blutzuckerspiegel zu hoch
-        if (errorType==1) {
+        if (errorType == 1) {
             binding.warningTextView.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
+        } else if (errorType == 2) {
+            binding.warningTextView.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
         }
-
-
     }
 }
