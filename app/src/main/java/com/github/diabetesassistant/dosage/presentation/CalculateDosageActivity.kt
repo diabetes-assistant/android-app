@@ -9,13 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.github.diabetesassistant.R
-import com.github.diabetesassistant.auth.domain.GlucoseLevelDBEntry
-import com.github.diabetesassistant.auth.domain.InsulinDosageDBEntry
-import com.github.diabetesassistant.auth.presentation.WarningActivity
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
-import java.time.LocalDateTime
-
 
 class CalculateDosageActivity : AppCompatActivity() {
 
@@ -123,6 +118,7 @@ class CalculateDosageActivity : AppCompatActivity() {
      * TODO ArrayList anfügen und diese dann in der ShowDiaryActivity sichtbar machen.
      */
     private fun handleSave(view: View) {
+        /* Deaktiviert wegen static_code_check-Warnung
         val currentDateTime: LocalDateTime = LocalDateTime.now()
         var glucoseLevelDBEntry: GlucoseLevelDBEntry = GlucoseLevelDBEntry(
             0, currentDateTime,
@@ -132,6 +128,7 @@ class CalculateDosageActivity : AppCompatActivity() {
             0, currentDateTime,
             this.calculateDosageViewModel.insulinDosageRecommended.value.toString().toInt()
         )
+        */
         this.calculateDosageViewModel.clearViewModel()
     }
 

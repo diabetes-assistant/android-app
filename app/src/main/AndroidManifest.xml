@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DiabetesAssistant">
-        <activity android:name=".auth.presentation.WarningActivity"></activity>
+        <activity android:name=".dosage.presentation.WarningActivity"></activity>
         <activity android:name=".dosage.presentation.ShowDiaryActivity" />
         <activity
             android:name=".MainActivity"
