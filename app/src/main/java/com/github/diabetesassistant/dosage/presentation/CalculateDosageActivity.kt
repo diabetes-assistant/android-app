@@ -1,5 +1,6 @@
 package com.github.diabetesassistant.dosage.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.diabetesassistant.R
 import com.github.diabetesassistant.auth.domain.GlucoseLevelDBEntry
 import com.github.diabetesassistant.auth.domain.InsulinDosageDBEntry
+import com.github.diabetesassistant.auth.presentation.WarningActivity
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
@@ -57,13 +59,22 @@ class CalculateDosageActivity : AppCompatActivity() {
             errorSnackbar.show()
             return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
-            // TODO am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
-            // TODO nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen
+            // Am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
+            // nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen
+
+            var intent: Intent? = null
+            intent = Intent(applicationContext, WarningActivity::class.java)
+            intent.putExtra("errorType", 1)
+            startActivity(intent)
+
+            /* Die Snackbar-Einblendung ist für die Blutzucker-Warnungen zu wenig
+            // eindrucksvoll, daher hier deaktiviert
             // TODO Hintergrund-Farbe des snackbar lässt sich merkwürdigerweise nicht ändern
             // errorSnackbar.view.setBackgroundColor(getColor(R.color.white))
             errorSnackbar.setTextColor(getColor(R.color.red_warning))
             errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
             errorSnackbar.show()
+            */
         } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
             errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
             errorSnackbar.show()
