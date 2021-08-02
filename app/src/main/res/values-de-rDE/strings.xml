@@ -50,4 +50,6 @@
     <string name="calculate_dosage_no_insulin_recommended">Kein Insulin injizieren!</string>
     <string name="calculate_dosage_clear">Eingaben löschen</string>
     <string name="calculate_dosage_save">Berechnung im Tagebuch speichern</string>
+
+    <string name="warning_resume">Zurück zur Insulindosisberechnung</string>
 </resources>

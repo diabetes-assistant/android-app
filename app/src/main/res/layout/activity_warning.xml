@@ -14,18 +14,25 @@
         <TextView
             android:id="@+id/warningTextView"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
             android:text="TextView"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_size_normal" />
 
-        <Button
-            android:id="@+id/resumeButton"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/resumeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/warning_resume"
+                android:textAllCaps="false" />
+        </RelativeLayout>
 
     </LinearLayout>
 

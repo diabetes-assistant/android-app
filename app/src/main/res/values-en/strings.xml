@@ -50,4 +50,6 @@
     <string name="calculate_dosage_no_insulin_recommended">Do not inject insulin!</string>
     <string name="calculate_dosage_clear">Clear input for new calculation</string>
     <string name="calculate_dosage_save">Save calculation in diary</string>
+
+    <string name="warning_resume">Back to Dosage Calculation</string>
 </resources>
