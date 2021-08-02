@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DiabetesAssistant">
+        <activity android:name=".dosage.presentation.WarningActivity"></activity>
         <activity android:name=".dosage.presentation.ShowDiaryActivity" />
         <activity
             android:name=".MainActivity"
@@ -42,6 +43,8 @@
                 android:value=".MainActivity" />
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCES_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

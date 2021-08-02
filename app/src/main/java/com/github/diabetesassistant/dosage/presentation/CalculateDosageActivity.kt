@@ -1,5 +1,6 @@
 package com.github.diabetesassistant.dosage.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -8,11 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.github.diabetesassistant.R
-import com.github.diabetesassistant.auth.domain.GlucoseLevelDBEntry
-import com.github.diabetesassistant.auth.domain.InsulinDosageDBEntry
 import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
-import java.time.LocalDateTime
 
 class CalculateDosageActivity : AppCompatActivity() {
 
@@ -46,10 +44,9 @@ class CalculateDosageActivity : AppCompatActivity() {
         )
         // Um den snackbar oben in der Activity darzustellen:
         // https://stackoverflow.com/questions/31746300/how-to-show-snackbar-at-top-of-the-screen
-        val view = errorSnackbar.view
-        val params = view.layoutParams as FrameLayout.LayoutParams
+        val params = errorSnackbar.view.layoutParams as FrameLayout.LayoutParams
         params.gravity = Gravity.TOP
-        view.layoutParams = params
+        errorSnackbar.view.layoutParams = params
 
         if (calculateDosageViewModel.isInvalid()) {
             // https://stackoverflow.com/questions/44871481/how-to-access-values-from-strings-xml
@@ -57,11 +54,18 @@ class CalculateDosageActivity : AppCompatActivity() {
             errorSnackbar.show()
             return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
-            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
-            errorSnackbar.show()
+            // Am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
+            // nicht eine snackbar einzublenden, sondern eine neue Activity aufzurufen,
+            // eine snackbar wäre zu wenig eindrucksvoll
+            var intent: Intent? = null
+            intent = Intent(applicationContext, WarningActivity::class.java)
+            intent.putExtra("errorType", 1)
+            startActivity(intent)
         } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
-            errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_low))
-            errorSnackbar.show()
+            var intent: Intent? = null
+            intent = Intent(applicationContext, WarningActivity::class.java)
+            intent.putExtra("errorType", 2)
+            startActivity(intent)
         } else {
             // Hier wird die Berechnung der Insulindosis initiiert,
             // die Berechnung selber findet im ViewModel statt
@@ -114,6 +118,7 @@ class CalculateDosageActivity : AppCompatActivity() {
      * TODO ArrayList anfügen und diese dann in der ShowDiaryActivity sichtbar machen.
      */
     private fun handleSave(view: View) {
+        /* Deaktiviert wegen static_code_check-Warnung
         val currentDateTime: LocalDateTime = LocalDateTime.now()
         var glucoseLevelDBEntry: GlucoseLevelDBEntry = GlucoseLevelDBEntry(
             0, currentDateTime,
@@ -123,6 +128,7 @@ class CalculateDosageActivity : AppCompatActivity() {
             0, currentDateTime,
             this.calculateDosageViewModel.insulinDosageRecommended.value.toString().toInt()
         )
+        */
         this.calculateDosageViewModel.clearViewModel()
     }
 
