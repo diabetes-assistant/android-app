@@ -14,6 +14,7 @@ import com.github.diabetesassistant.databinding.ActivityCalculateDosageBinding
 import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
 
+
 class CalculateDosageActivity : AppCompatActivity() {
 
     private lateinit var calculateDosageViewModel: CalculateDosageViewModel
@@ -46,10 +47,9 @@ class CalculateDosageActivity : AppCompatActivity() {
         )
         // Um den snackbar oben in der Activity darzustellen:
         // https://stackoverflow.com/questions/31746300/how-to-show-snackbar-at-top-of-the-screen
-        val view = errorSnackbar.view
-        val params = view.layoutParams as FrameLayout.LayoutParams
+        val params = errorSnackbar.view.layoutParams as FrameLayout.LayoutParams
         params.gravity = Gravity.TOP
-        view.layoutParams = params
+        errorSnackbar.view.layoutParams = params
 
         if (calculateDosageViewModel.isInvalid()) {
             // https://stackoverflow.com/questions/44871481/how-to-access-values-from-strings-xml
@@ -57,6 +57,11 @@ class CalculateDosageActivity : AppCompatActivity() {
             errorSnackbar.show()
             return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
+            // TODO am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
+            // TODO nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen
+            // TODO Hintergrund-Farbe des snackbar lässt sich merkwürdigerweise nicht ändern
+            // errorSnackbar.view.setBackgroundColor(getColor(R.color.white))
+            errorSnackbar.setTextColor(getColor(R.color.red_warning))
             errorSnackbar.setText(getString(R.string.calculate_dosage_glucose_level_too_high))
             errorSnackbar.show()
         } else if (calculateDosageViewModel.isGlucoseLevelTooLow()) {
