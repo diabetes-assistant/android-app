@@ -41,9 +41,9 @@ class CalculateDosageViewModel : ViewModel() {
     fun calculateInsulinDosage() {
         val carbohydrateAmountInt: Int = this.carbohydrateAmount.value.toString().toInt()
         val insulinStandardDosage: Int = (carbohydrateAmountInt * Presets.keFactor).roundToInt()
-        val glucoseLevelDiscrepancy: Double =
-            (this.glucoseLevel.value
-                .toString().toInt() - Presets.glucoseLevelUpperNormalLimit).toDouble()
+        val glucoseLevelDiscrepancy: Double = (this.glucoseLevel
+            .value.toString().toInt() - Presets
+            .glucoseLevelUpperNormalLimit).toDouble()
         // TODO ceil wird genutzt, damit aufgerundet wird
         val correctionStepsInt: Int =
             (ceil(glucoseLevelDiscrepancy / Presets.glucoseLevelCorrectionInterval)).toInt()

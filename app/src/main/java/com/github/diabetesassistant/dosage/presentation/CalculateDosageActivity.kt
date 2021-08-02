@@ -55,8 +55,8 @@ class CalculateDosageActivity : AppCompatActivity() {
             return
         } else if (calculateDosageViewModel.isGlucoseLevelTooHigh()) {
             // Am besten ist es, bei zu hohen oder zu niedrigen Blutzuckerwerten
-            // nicht ein snackbar einzublenden, sondern eine neue Activity aufzurufen,
-            // ein snackbar wäre zu wenig eindrucksvoll
+            // nicht eine snackbar einzublenden, sondern eine neue Activity aufzurufen,
+            // eine snackbar wäre zu wenig eindrucksvoll
             var intent: Intent? = null
             intent = Intent(applicationContext, WarningActivity::class.java)
             intent.putExtra("errorType", 1)
