@@ -18,7 +18,7 @@ android {
         versionName("1.0")
 
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
-        val idTokenSecret = System.getenv("ID_TOKEN_SECRET") ?: "some-thing"
+        val idTokenSecret = System.getenv("ID_TOKEN_SECRET") ?: "c29tZS10aGluZw=="
         buildConfigField("String", "ID_TOKEN_SECRET", "\"$idTokenSecret\"")
     }
 
