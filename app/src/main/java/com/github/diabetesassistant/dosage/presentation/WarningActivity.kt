@@ -33,6 +33,7 @@ class WarningActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun handleResume(view: View) {
         intent = Intent(applicationContext, CalculateDosageActivity::class.java)
         startActivity(intent)

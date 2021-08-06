@@ -96,6 +96,7 @@ class CalculateDosageActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun handleClear(view: View) {
         this.calculateDosageViewModel.clearViewModel()
         binding.calculateDosageGlucoseLevel.setText(
@@ -117,6 +118,7 @@ class CalculateDosageActivity : AppCompatActivity() {
      * TODO !! Hier weitermachen, die eingegebenen/ errechneten DBEntries jeweils an das entsprechende
      * TODO ArrayList anfügen und diese dann in der ShowDiaryActivity sichtbar machen.
      */
+    @Suppress("UNUSED_PARAMETER")
     private fun handleSave(view: View) {
         /* Deaktiviert wegen static_code_check-Warnung
         val currentDateTime: LocalDateTime = LocalDateTime.now()
