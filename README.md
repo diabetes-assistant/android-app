@@ -26,7 +26,7 @@ Will run all tests on a connected device:
 ```
 
 ### Lint
-Will run linter and create lint report:s
+Will run linter and create lint report:
 ```bash
 ./gradlew lint
 ```
