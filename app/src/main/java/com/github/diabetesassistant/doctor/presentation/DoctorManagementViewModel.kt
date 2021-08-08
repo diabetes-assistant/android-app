@@ -1,12 +1,13 @@
 package com.github.diabetesassistant.doctor.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class DoctorManagementViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val confirmationCode = MutableLiveData("")
+    private val allowedCharacters = Regex("[a-zA-Z0-9]{6}")
+
+    fun isValid(confirmationCode: String): Boolean {
+        return confirmationCode.matches(allowedCharacters)
     }
-    val text: LiveData<String> = _text
 }
