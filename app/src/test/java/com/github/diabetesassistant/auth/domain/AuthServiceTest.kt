@@ -1,6 +1,8 @@
 package com.github.diabetesassistant.auth.domain
 
 import com.auth0.jwt.JWTVerifier
+import com.auth0.jwt.exceptions.JWTVerificationException
+import com.auth0.jwt.interfaces.Claim
 import com.auth0.jwt.interfaces.DecodedJWT
 import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.data.CredentialsDTO
@@ -13,6 +15,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.any
 import org.mockito.Mockito.mock
 
 class AuthServiceTest {
@@ -26,14 +29,12 @@ class AuthServiceTest {
     @Test
     fun shouldReturnTokenForLoginUser() {
         runBlocking {
-            val (authClientMock, verifier, testee) = fixtures()
+            val (authClientMock, _, testee) = fixtures()
             `when`(authClientMock.createToken(CredentialsDTO("foo@bar.com", "secret")))
                 .thenReturn(Result.success(TokenDTO("access", "id")))
-            val decodedJWT = mock(DecodedJWT::class.java)
-            `when`(verifier.verify("id")).thenReturn(decodedJWT)
 
             val actual = testee.login(Credentials("foo@bar.com", "secret"))
-            val expected = Result.success(Token("access", "id",decodedJWT))
+            val expected = Result.success(Token("access", "id"))
 
             assertEquals(expected, actual)
         }
@@ -99,5 +100,35 @@ class AuthServiceTest {
 
             assertEquals(expected, actual)
         }
+    }
+
+    @Test
+    fun `should return authenticated user`() {
+        val (_, verifier, testee) = fixtures()
+        val idToken = "idToken"
+        val user = User(UUID.randomUUID(), "foo@bar.com")
+        val decodedJWTMock = mock(DecodedJWT::class.java)
+        val claimMock = mock(Claim::class.java)
+        `when`(claimMock.asString()).thenReturn("foo@bar.com")
+        `when`(decodedJWTMock.getClaim(any())).thenReturn(claimMock)
+        `when`(decodedJWTMock.subject).thenReturn(user.id.toString())
+        `when`(verifier.verify(idToken)).thenReturn(decodedJWTMock)
+
+        val actual = testee.authenticatedUser(idToken)
+        val expected = User(user.id, user.email)
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `should return null for error when getting authenticated user`() {
+        val (_, verifier, testee) = fixtures()
+        val idToken = "idToken"
+        `when`(verifier.verify(idToken)).thenThrow(JWTVerificationException("Error"))
+
+        val actual = testee.authenticatedUser(idToken)
+        val expected = null
+
+        assertEquals(expected, actual)
     }
 }

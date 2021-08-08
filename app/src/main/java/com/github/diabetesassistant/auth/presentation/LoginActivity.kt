@@ -77,8 +77,6 @@ class LoginActivity : AppCompatActivity() {
             with(sharedPref.edit()) {
                 putString(getString(R.string.access_token_key), token.accessToken)
                 putString(getString(R.string.id_token_key), token.idToken)
-                putString(getString(R.string.user_id), token.idTokenValues.subject)
-                putString(getString(R.string.email), token.idTokenValues.getClaim("email").asString())
                 apply()
             }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()

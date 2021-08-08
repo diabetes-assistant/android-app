@@ -11,8 +11,6 @@
     <string name="app_prefix">COM_GITHUHB_DIABETESASSISTANT</string>
     <string name="access_token_key">COM_GITHUHB_DIABETESASSISTANT_ACCESS_KEY</string>
     <string name="id_token_key">COM_GITHUHB_DIABETESASSISTANT_ID_KEY</string>
-    <string name="email">COM_GITHUHB_DIABETESASSISTANT_EMAIL</string>
-    <string name="user_id">COM_GITHUHB_DIABETESASSISTANT_USER_ID</string>
 
     <string name="menu_login">Sign-in / Register</string>
     <string name="menu_calculate_insulin_dosage">Calculate insulin dosage</string>

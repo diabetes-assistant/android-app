@@ -1,6 +1,7 @@
 package com.github.diabetesassistant.auth.domain
 
 import com.auth0.jwt.JWTVerifier
+import com.auth0.jwt.exceptions.JWTVerificationException
 import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.data.CredentialsDTO
 import com.github.diabetesassistant.auth.data.UserCreationDTO
@@ -16,7 +17,8 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
         val dto = CredentialsDTO(credentials.email, credentials.password)
         val tokenCreationResult = authClient.createToken(dto)
         return tokenCreationResult.mapCatching {
-            Token(it.accessToken, it.idToken, verifier.verify(it.idToken))
+            verifier.verify(it.idToken)
+            Token(it.accessToken, it.idToken)
         }
     }
 
@@ -25,6 +27,17 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
         val createdUserDTO: Result<UserDTO> = authClient.createUser(dto)
         return createdUserDTO.mapCatching {
             User(UUID.fromString(it.id), it.email)
+        }
+    }
+
+    fun authenticatedUser(idToken: String): User? {
+        return try {
+            val decodedJWT = this.verifier.verify(idToken)
+            val email = decodedJWT.getClaim("email").asString()
+            val userId = UUID.fromString(decodedJWT.subject)
+            User(userId, email)
+        } catch (exception: JWTVerificationException) {
+            null
         }
     }
 }
