@@ -38,11 +38,8 @@ class LoginActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     private fun handleSubmit(view: View) {
-        val errorSnackbar = Snackbar.make(
-            binding.loginLayout,
-            R.string.login_failed,
-            Snackbar.LENGTH_LONG
-        )
+        val loginLayout = binding.loginLayout
+        val errorSnackbar = Snackbar.make(loginLayout, R.string.login_failed, Snackbar.LENGTH_LONG)
         if (loginViewModel.isInvalid()) {
             errorSnackbar.show()
         } else {
@@ -52,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     loginViewModel.password.value.toString()
                 )
                 val loginResult: Result<Token> = authService.login(user)
-                loginResult.fold(storeToken(binding.loginLayout), handleError(binding.loginLayout))
+                loginResult.fold(storeToken(loginLayout), handleError(loginLayout))
             }
         }
     }
