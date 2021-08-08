@@ -61,6 +61,7 @@
     <string name="doctor_management_confirmation_code_label">Bestätigungs Code:</string>
     <string name="doctor_management_confirmation_code_placeholder">6-stelliger Bestätigungs Code</string>
     <string name="doctor_management_confirmation_button">Bestätigen</string>
+    <string name="doctor_management_confirmation_hint">Sie werden folgende Doktor:in bestätigen:</string>
     <string name="doctor_management_confirmation_failure">Der angegebene Bestätigungs Code hat leider nicht funktioniert. Bitte versuchen Sie es noch einmal.</string>
     <string name="doctor_management_confirmation_success">Die Doktor:in wurde bestätigt.</string>
 </resources>

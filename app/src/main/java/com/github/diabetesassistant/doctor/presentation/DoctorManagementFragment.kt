@@ -48,7 +48,6 @@ class DoctorManagementFragment : Fragment() {
 
     @Suppress("UNUSED_PARAMETER")
     private fun initiateAssignment(chars: CharSequence?, a: Int, b: Int, c: Int) {
-        Log.i("AssignDoctor", "foo")
         this.viewModel.confirmationCode.value = chars.toString()
         val confirmationCode = this.viewModel.confirmationCode.value.toString()
         if (this.viewModel.isValid(confirmationCode)) {
@@ -59,7 +58,6 @@ class DoctorManagementFragment : Fragment() {
             val sharedPref = this.activity?.getSharedPreferences(keySpace, Context.MODE_PRIVATE)
             val accessToken = sharedPref?.getString(getString(R.string.access_token_key), "")
             lifecycleScope.launch(Dispatchers.IO) {
-                Log.i("AssignDoctor", "foobar")
                 val assignment: Result<Assignment> = doctorService.findAssignment(
                     accessToken!!,
                     confirmationCode
@@ -71,8 +69,14 @@ class DoctorManagementFragment : Fragment() {
 
     private fun enable(button: Button, hintView: TextView): (Assignment) -> Unit {
         return {
-            hintView.setText(it.doctor!!.email)
-            button.isEnabled = true
+            requireActivity().runOnUiThread {
+                val email = it.doctor!!.email
+                val textKey = R.string.doctor_management_confirmation_hint
+                val text = "${requireActivity().getText(textKey)}\n\n${email}"
+                hintView.text = text
+                hintView.visibility = View.VISIBLE
+                button.isEnabled = true
+            }
         }
     }
 
