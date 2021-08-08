@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Diabetes Assistent</string>
     <string name="navigation_drawer_open">Navigationsmenu öffnen</string>
@@ -28,7 +27,7 @@
     <string name="login_success">Login erfolgreich</string>
 
     <string name="title_activity_register">Registrieren</string>
-    <string name="register_description">Bitte registrieren Sie sich mit Ihrer email-Addresse und einem Passwort.</string>
+    <string name="register_description">Bitte registrieren Sie sich mit Ihrer E-Mail Addresse und einem Passwort.</string>
     <string name="register_email">E-Mail</string>
     <string name="register_password">Passwort</string>
     <string name="register_password_confirmation">Passwort-Bestätigung</string>
