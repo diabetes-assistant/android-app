@@ -62,4 +62,6 @@
     <string name="doctor_management_confirmation_code_label">Confirmation code:</string>
     <string name="doctor_management_confirmation_code_placeholder">6 digit confirmation code</string>
     <string name="doctor_management_confirmation_button">Confirm</string>
+    <string name="doctor_management_confirmation_failure">The code you provided unfortunately did not work. Please try again</string>
+    <string name="doctor_management_confirmation_success">Successfully confirmed the doctor</string>
 </resources>

@@ -37,6 +37,7 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
             val userId = UUID.fromString(decodedJWT.subject)
             User(userId, email)
         } catch (exception: JWTVerificationException) {
+            println(exception.stackTrace)
             null
         }
     }

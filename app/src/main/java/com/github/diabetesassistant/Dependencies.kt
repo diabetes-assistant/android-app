@@ -5,6 +5,8 @@ import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.github.diabetesassistant.auth.data.AuthClient
 import com.github.diabetesassistant.auth.domain.AuthService
+import com.github.diabetesassistant.doctor.data.DoctorClient
+import com.github.diabetesassistant.doctor.domain.DoctorService
 
 object Dependencies {
     private const val ONE_SECOND: Long = 1
@@ -21,4 +23,6 @@ object Dependencies {
         .build()
     private val authClient = AuthClient(BASE_URL)
     val authService = AuthService(authClient, verifier)
+    val doctorClient = DoctorClient(BASE_URL)
+    val doctorService = DoctorService(doctorClient)
 }

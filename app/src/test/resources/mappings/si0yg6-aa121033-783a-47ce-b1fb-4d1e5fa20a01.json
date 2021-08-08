@@ -1,0 +1,30 @@
+{
+  "id" : "aa121033-783a-47ce-b1fb-4d1e5fa20a01",
+  "name" : "si0yg6",
+  "request" : {
+    "url" : "/assignment/SI0YG6",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"code\":\"SI0YG6\",\"doctor\":{\"id\":\"0b5b7136-a359-4423-b9d0-0305dd946a26\",\"email\":\"doctor@email.com\"},\"patient\":null,\"state\":\"initial\"}",
+    "headers" : {
+      "Server" : "Cowboy",
+      "Date" : "Sun, 08 Aug 2021 15:24:01 GMT",
+      "Vary" : [ "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers" ],
+      "Content-Type" : "application/json",
+      "Cache-Control" : "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma" : "no-cache",
+      "Expires" : "0",
+      "X-Content-Type-Options" : "nosniff",
+      "Strict-Transport-Security" : "max-age=31536000 ; includeSubDomains",
+      "X-Frame-Options" : "DENY",
+      "X-Xss-Protection" : "1 ; mode=block",
+      "Referrer-Policy" : "no-referrer",
+      "Via" : "1.1 vegur"
+    }
+  },
+  "uuid" : "aa121033-783a-47ce-b1fb-4d1e5fa20a01",
+  "persistent" : true,
+  "insertionIndex" : 4
+}
