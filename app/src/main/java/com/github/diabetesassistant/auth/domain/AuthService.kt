@@ -16,7 +16,7 @@ class AuthService(private val authClient: AuthClient, private val verifier: JWTV
         val dto = CredentialsDTO(credentials.email, credentials.password)
         val tokenCreationResult = authClient.createToken(dto)
         return tokenCreationResult.mapCatching {
-            Token(it.accessToken, verifier.verify(it.idToken))
+            Token(it.accessToken, it.idToken, verifier.verify(it.idToken))
         }
     }
 

@@ -33,7 +33,7 @@ class AuthServiceTest {
             `when`(verifier.verify("id")).thenReturn(decodedJWT)
 
             val actual = testee.login(Credentials("foo@bar.com", "secret"))
-            val expected = Result.success(Token("access", decodedJWT))
+            val expected = Result.success(Token("access", "id",decodedJWT))
 
             assertEquals(expected, actual)
         }
