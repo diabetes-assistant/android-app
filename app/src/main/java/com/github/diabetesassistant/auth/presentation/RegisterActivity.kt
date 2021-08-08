@@ -9,10 +9,10 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.github.diabetesassistant.Dependencies.authService
-import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
 import com.github.diabetesassistant.auth.domain.Credentials
 import com.github.diabetesassistant.auth.domain.User
+import com.github.diabetesassistant.core.presentation.RedirectTimings.ONE_SECOND
 import com.github.diabetesassistant.databinding.ActivityRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -75,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
         return { user: User ->
             Snackbar.make(view, R.string.register_success, Snackbar.LENGTH_LONG).show()
             Log.i("Register", "Successfully registered for user: ${user.email}")
-            Thread.sleep(1000)
+            Thread.sleep(ONE_SECOND)
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }

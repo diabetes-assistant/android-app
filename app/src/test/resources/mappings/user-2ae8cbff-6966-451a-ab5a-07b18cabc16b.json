@@ -1,0 +1,35 @@
+{
+  "id" : "2ae8cbff-6966-451a-ab5a-07b18cabc16b",
+  "name" : "user",
+  "request" : {
+    "url" : "/user",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"email\":\"foo@email.com\",\"password\":\"secret\",\"role\":\"patient\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"id\":\"fa171f58-e36f-48ca-b34f-185b4e810bac\",\"email\":\"foo@email.com\",\"role\":\"patient\"}",
+    "headers" : {
+      "Server" : "Cowboy",
+      "Date" : "Sun, 08 Aug 2021 10:54:42 GMT",
+      "Vary" : [ "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers" ],
+      "Content-Type" : "application/json",
+      "Cache-Control" : "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma" : "no-cache",
+      "Expires" : "0",
+      "X-Content-Type-Options" : "nosniff",
+      "Strict-Transport-Security" : "max-age=31536000 ; includeSubDomains",
+      "X-Frame-Options" : "DENY",
+      "X-Xss-Protection" : "1 ; mode=block",
+      "Referrer-Policy" : "no-referrer",
+      "Via" : "1.1 vegur"
+    }
+  },
+  "uuid" : "2ae8cbff-6966-451a-ab5a-07b18cabc16b",
+  "persistent" : true,
+  "insertionIndex" : 3
+}

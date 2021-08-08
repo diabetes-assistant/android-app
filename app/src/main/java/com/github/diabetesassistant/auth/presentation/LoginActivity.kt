@@ -14,6 +14,7 @@ import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
 import com.github.diabetesassistant.auth.domain.Credentials
 import com.github.diabetesassistant.auth.domain.Token
+import com.github.diabetesassistant.core.presentation.RedirectTimings.ONE_SECOND
 import com.github.diabetesassistant.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -81,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
             }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()
             Log.i("Login", "Successfully logged in")
-            Thread.sleep(1000)
+            Thread.sleep(ONE_SECOND)
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

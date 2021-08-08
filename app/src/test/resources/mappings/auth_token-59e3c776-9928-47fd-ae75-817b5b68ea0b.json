@@ -1,0 +1,35 @@
+{
+  "id" : "59e3c776-9928-47fd-ae75-817b5b68ea0b",
+  "name" : "auth_token",
+  "request" : {
+    "url" : "/auth/token",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\"email\":\"doctor@email.com\",\"password\":\"secret\"}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"accessToken\":\"accessToken\",\"idToken\":\"idToken\"}",
+    "headers" : {
+      "Server" : "Cowboy",
+      "Date" : "Sun, 08 Aug 2021 10:54:42 GMT",
+      "Vary" : [ "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers" ],
+      "Content-Type" : "application/json",
+      "Cache-Control" : "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma" : "no-cache",
+      "Expires" : "0",
+      "X-Content-Type-Options" : "nosniff",
+      "Strict-Transport-Security" : "max-age=31536000 ; includeSubDomains",
+      "X-Frame-Options" : "DENY",
+      "X-Xss-Protection" : "1 ; mode=block",
+      "Referrer-Policy" : "no-referrer",
+      "Via" : "1.1 vegur"
+    }
+  },
+  "uuid" : "59e3c776-9928-47fd-ae75-817b5b68ea0b",
+  "persistent" : true,
+  "insertionIndex" : 2
+}
