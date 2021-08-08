@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/assignDoctorActivity"
+            android:icon="@drawable/ic_baseline_calculate_24"
+            android:title="@string/menu_calculate_insulin_dosage" />
+        <item
             android:id="@+id/calculateDosageActivity"
             android:icon="@drawable/ic_baseline_calculate_24"
             android:title="@string/menu_calculate_insulin_dosage" />

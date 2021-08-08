@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
     @Suppress("UNUSED_PARAMETER")
     private fun handleSubmit(view: View) {
         val errorSnackbar = Snackbar.make(
-            binding.container,
+            binding.loginLayout,
             R.string.login_failed,
             Snackbar.LENGTH_LONG
         )
@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     loginViewModel.password.value.toString()
                 )
                 val loginResult: Result<Token> = authService.login(user)
-                loginResult.fold(storeToken(binding.container), handleError(binding.container))
+                loginResult.fold(storeToken(binding.loginLayout), handleError(binding.loginLayout))
             }
         }
     }

@@ -26,6 +26,7 @@
         </activity>
         <activity
             android:name=".auth.presentation.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_register">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -33,6 +34,7 @@
         </activity>
         <activity
             android:name=".auth.presentation.LoginActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_login">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
