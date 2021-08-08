@@ -30,9 +30,12 @@
 
     <string name="title_activity_register">Registrieren</string>
     <string name="register_description">Bitte registrieren Sie sich mit Ihrer E-Mail Addresse und einem Passwort.</string>
-    <string name="register_email">E-Mail</string>
-    <string name="register_password">Passwort</string>
-    <string name="register_password_confirmation">Passwort-Bestätigung</string>
+    <string name="register_email_label">E-Mail:</string>
+    <string name="register_email_placeholder">name@email.de</string>
+    <string name="register_password_label">Passwort:</string>
+    <string name="register_password_placeholder">Ihr Passwort</string>
+    <string name="register_password_confirmation_label">Passwort Bestätigung:</string>
+    <string name="register_password_confirmation_placeholder">Ihr Passwort</string>
     <string name="register_submit_button">Registrieren</string>
     <string name="register_failed">Registrierung fehlgeschlagen</string>
     <string name="register_success">Registrierung erfolgreich</string>

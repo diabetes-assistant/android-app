@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        android:paddingStart="@dimen/padding_lablel"
-        android:paddingEnd="@dimen/padding_lablel"
+        android:paddingStart="@dimen/padding_label"
+        android:paddingEnd="@dimen/padding_label"
         android:text="@string/login_email_label"
         android:textColor="@color/primary_dark"
         android:textSize="@dimen/text_size_small" />
@@ -43,8 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_large"
-        android:paddingStart="@dimen/padding_lablel"
-        android:paddingEnd="@dimen/padding_lablel"
+        android:paddingStart="@dimen/padding_label"
+        android:paddingEnd="@dimen/padding_label"
         android:text="@string/login_password_label"
         android:textColor="@color/primary_dark"
         android:textSize="@dimen/text_size_small" />

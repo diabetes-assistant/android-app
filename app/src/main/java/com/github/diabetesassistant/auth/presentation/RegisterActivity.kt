@@ -35,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     private fun handleSubmit(view: View) {
-        val snackbarView = binding.registerContainer
+        val snackbarView = binding.registerLayout
         val errorSnackbar = Snackbar.make(
             snackbarView,
             R.string.register_failed,

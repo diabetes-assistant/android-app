@@ -10,7 +10,7 @@
 
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_large">16dp</dimen>
-    <dimen name="padding_lablel">3dp</dimen>
+    <dimen name="padding_label">3dp</dimen>
 
     <dimen name="margin">8dp</dimen>
     <dimen name="margin_large">16dp</dimen>
