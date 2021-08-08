@@ -17,6 +17,7 @@
     <string name="menu_calculate_insulin_dosage">Calculate insulin dosage</string>
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_show_diary">Show blood glucose diary</string>
+    <string name="menu_doctor_management">Doctor Management</string>
 
     <string name="title_activity_login">Sign-in</string>
     <string name="login_description">To use all available features you need to sign in.</string>
@@ -56,4 +57,10 @@
     <string name="calculate_dosage_save">Save calculation in diary</string>
 
     <string name="warning_resume">Back to Dosage Calculation</string>
+
+    <string name="doctor_management_add_doctor_title">Confirm your doctor assignment</string>
+    <string name="doctor_management_add_doctor_description">You do not have a doctor assigned yet. You can do so by adding your doctors confirmation code and confirming it. Please get in touch with your doctor to get the confirmation code.</string>
+    <string name="doctor_management_confirmation_code_label">Confirmation code:</string>
+    <string name="doctor_management_confirmation_code_placeholder">6 digit confirmation code</string>
+    <string name="doctor_management_confirmation_button">Confirm</string>
 </resources>

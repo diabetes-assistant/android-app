@@ -5,9 +5,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/assignDoctorActivity"
-            android:icon="@drawable/ic_baseline_calculate_24"
-            android:title="@string/menu_calculate_insulin_dosage" />
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_dashboard"
+            android:title="@string/menu_dashboard" />
+        <item
+            android:id="@+id/doctorManagement"
+            android:icon="@drawable/ic_menu_doctor_management"
+            android:title="@string/menu_doctor_management" />
         <item
             android:id="@+id/calculateDosageActivity"
             android:icon="@drawable/ic_baseline_calculate_24"
@@ -17,9 +21,5 @@
             android:id="@+id/showDiaryActivity"
             android:icon="@drawable/ic_baseline_calculate_24"
             android:title="@string/menu_show_diary" />
-        <item
-            android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_menu_dashboard"
-            android:title="@string/menu_dashboard" />
     </group>
 </menu>

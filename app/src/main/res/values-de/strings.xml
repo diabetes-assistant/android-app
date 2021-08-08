@@ -17,6 +17,7 @@
     <string name="menu_calculate_insulin_dosage">Insulindosis berechnen</string>
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_show_diary">Blutzuckertagebuch</string>
+    <string name="menu_doctor_management">Doktor:in Verwaltung</string>
 
     <string name="title_activity_login">Log-in</string>
     <string name="login_description">Loggen Sie sich bitten ein, um alle Funktionen nutzen zu können.</string>
@@ -56,4 +57,9 @@
     <string name="calculate_dosage_save">Berechnung im Tagebuch speichern</string>
 
     <string name="warning_resume">Zurück zur Insulindosisberechnung</string>
+    <string name="doctor_management_add_doctor_title">Bestätigen Sie eine Doktor:in</string>
+    <string name="doctor_management_add_doctor_description">Sie haben noch keine Doktor:in eingerichtet. Bitte bestätigen Sie ihre Doktor:in mit dem zugehörigen Bestätigungs Code. Kontaktieren Sie ihre Doktor:in um den Bestätigungs Code zu erhalten.</string>
+    <string name="doctor_management_confirmation_code_label">Bestätigungs Code:</string>
+    <string name="doctor_management_confirmation_code_placeholder">6-stelliger Bestätigungs Code</string>
+    <string name="doctor_management_confirmation_button">Bestätigen</string>
 </resources>

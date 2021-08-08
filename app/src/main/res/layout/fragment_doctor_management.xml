@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/doctorManagementFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.github.diabetesassistant.doctor.presentation.DoctorManagementFragment">
+
+    <TextView
+        android:id="@+id/doctorManagementAddDoctorTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/doctor_management_add_doctor_title"
+        android:textSize="@dimen/text_size_normal"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/doctorManagementAddDoctorDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/doctor_management_add_doctor_description"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/doctorManagementConfirmationCodeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:paddingStart="@dimen/padding_label"
+        android:paddingEnd="@dimen/padding_label"
+        android:text="@string/doctor_management_confirmation_code_label"
+        android:textColor="@color/primary_dark"
+        android:textSize="@dimen/text_size_small" />
+
+    <EditText
+        android:id="@+id/doctorManagementConfirmationCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="text"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        android:ems="10"
+        android:hint="@string/doctor_management_confirmation_code_placeholder"
+        android:inputType="text"
+        android:maxLength="6" />
+
+    <TextView
+        android:id="@+id/doctorManagementHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:textSize="@dimen/text_size_normal" />
+
+    <Button
+        android:id="@+id/doctorManagementAssignButton"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:text="@string/doctor_management_confirmation_button" />
+
+</LinearLayout>

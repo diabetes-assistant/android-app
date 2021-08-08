@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = getNavController()
-        val loggedInMenuIds = setOf(R.id.nav_dashboard)
+        val loggedInMenuIds = setOf(R.id.nav_dashboard, R.id.doctorManagement)
         val menuIds = setOf(R.id.loginActivity, R.id.nav_dashboard)
         val sharedPref = getSharedPreferences(getString(R.string.app_prefix), Context.MODE_PRIVATE)
         val accessKey = sharedPref.getString(getString(R.string.access_key), "")

@@ -12,6 +12,13 @@
         tools:layout="@layout/fragment_dashboard" >
     </fragment>
 
+    <fragment
+        android:id="@+id/doctorManagement"
+        android:name="com.github.diabetesassistant.doctor.presentation.DoctorManagementFragment"
+        android:label="@string/menu_doctor_management"
+        tools:layout="@layout/fragment_doctor_management" >
+    </fragment>
+
     <activity
         android:id="@+id/loginActivity"
         android:name="com.github.diabetesassistant.auth.presentation.LoginActivity"
