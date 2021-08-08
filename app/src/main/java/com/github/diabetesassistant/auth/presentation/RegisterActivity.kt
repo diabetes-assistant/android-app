@@ -1,5 +1,6 @@
 package com.github.diabetesassistant.auth.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.github.diabetesassistant.Dependencies.authService
+import com.github.diabetesassistant.MainActivity
 import com.github.diabetesassistant.R
 import com.github.diabetesassistant.auth.domain.Credentials
 import com.github.diabetesassistant.auth.domain.User
@@ -71,9 +73,10 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun handleSuccess(view: View): (User) -> Unit {
         return { user: User ->
-            val successMessage = "${R.string.register_success} for user: ${user.email}"
-            Snackbar.make(view, successMessage, Snackbar.LENGTH_LONG).show()
-            Log.i("Register", successMessage)
+            Snackbar.make(view, R.string.register_success, Snackbar.LENGTH_LONG).show()
+            Log.i("Register", "Successfully registered for user: ${user.email}")
+            Thread.sleep(1000)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

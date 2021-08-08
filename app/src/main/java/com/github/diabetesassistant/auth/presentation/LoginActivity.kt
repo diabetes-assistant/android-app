@@ -81,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
             }
             Snackbar.make(view, R.string.login_success, Snackbar.LENGTH_LONG).show()
             Log.i("Login", "Successfully logged in")
+            Thread.sleep(1000)
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
